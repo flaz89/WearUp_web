@@ -22,6 +22,7 @@ public class UserRequestPayload {
 	private String email;
 	@NotNull(message = "Password is required")
 	private String password;
+	private String profilePicture;
 }
 
 

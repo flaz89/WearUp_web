@@ -11,8 +11,12 @@ import lombok.Setter;
 public class BrandRequestPayload {
 	@NotNull(message = "Name is required")
 	private String brandName;
+	@NotNull(message = "Address is required")
 	private String address;
+	@NotNull(message = "City is required")
 	private String city;
+	@NotNull(message = "Country is required")
+	private String country;
 	private String phoneNumber;
 	@NotNull(message = "VAT is required")
 	private String vatNumber;
@@ -20,4 +24,5 @@ public class BrandRequestPayload {
 	private String email;
 	@NotNull(message = "Password is required")
 	private String password;
+	private String profilePicture;
 }

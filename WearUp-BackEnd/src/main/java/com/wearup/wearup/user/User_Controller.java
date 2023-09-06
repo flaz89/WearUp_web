@@ -50,6 +50,7 @@ public class User_Controller {
 	// -------------------------------------------- UPDATE USER by ID
 	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/{userId}")
+	@ResponseStatus(HttpStatus.OK)
 	public User updateUser(@PathVariable UUID userId, @RequestBody UserRequestPayload body) {
 		return userSrv.findByIdAndUpdate(userId, body);
 	}

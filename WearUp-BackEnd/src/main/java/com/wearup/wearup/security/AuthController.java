@@ -46,21 +46,44 @@ public class AuthController {
 		return created;
 	}
 
+//	@PostMapping("/login")
+//	public LoginSuccessfullPayload login(@RequestBody UserLoginPayload body) {
+//
+//	    // Cerca tra gli utenti
+//	    User user = userSrv.findByEmail(body.getEmail());
+//
+//	    if (user != null && bcrypt.matches(body.getPassword(), user.getPassword())) {
+//	        String token = jwtTools.createUserToken(user);
+//	        return new LoginSuccessfullPayload(token);
+//	    }
+//	    // Se l'utente non è stato trovato tra gli utenti, cerca tra le entità brand
+//	    Brand brand = brandSrv.findbyEmail(body.getEmail());
+//	
+//
+//	    if (brand != null && bcrypt.matches(body.getPassword(), brand.getPassword())) {
+//	        String token = jwtTools.createBrandToken(brand); // Implementa il metodo per creare il token per il brand
+//	        return new LoginSuccessfullPayload(token);
+//	    }
+//
+//	    // Se non è stato trovato né l'utente né il brand, restituisci UnauthorizedException
+//	    throw new UnauthorizedException("Invalid credentials!");
+//	}
 	@PostMapping("/login")
 	public LoginSuccessfullPayload login(@RequestBody UserLoginPayload body) {
-
+		
 		User user = userSrv.findByEmail(body.getEmail());
-
-		if (bcrypt.matches(body.getPassword(), user.getPassword())) {
-
+		Brand brand = brandSrv.findbyEmail(body.getEmail());
+		
+		if (user != null && bcrypt.matches(body.getPassword(), user.getPassword())) {
 			String token = jwtTools.createUserToken(user);
-			return new LoginSuccessfullPayload(token);
-
+	        return new LoginSuccessfullPayload(token);
+		} else if (brand != null && bcrypt.matches(body.getPassword(), brand.getPassword())) {
+			String token = jwtTools.createBrandToken(brand); 
+	        return new LoginSuccessfullPayload(token);
 		} else {
-			throw new UnauthorizedException("Invalid credentials!");
+			throw new UnauthorizedException("Invalid credentials, retry again!");
 		}
 	}
-	
 	// ---------------------------------------------- BRAND
 	
 	@PostMapping("/register/brand")

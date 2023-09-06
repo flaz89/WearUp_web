@@ -2,6 +2,7 @@ package com.wearup.wearup.user;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,13 +40,17 @@ public class User implements UserDetails {
 	private String password;
 	@Enumerated(EnumType.STRING)
 	private User_Role role;
+	private String profilePicture;
+	private Date subscriptionDate;
 
-	public User(String name, String surname, String email, String password) {
+	public User(String name, String surname, String email, String password, String profilePicture) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
 		this.role = User_Role.USER;
+		this.profilePicture = (profilePicture != null) ? profilePicture : "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
+		this.subscriptionDate = new Date();
 
 	}
 

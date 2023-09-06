@@ -37,13 +37,15 @@ public class User_Service {
 				body.getName(), 
 				body.getSurname(),
 				body.getEmail(),
-				body.getPassword());
+				body.getPassword(),
+				body.getProfilePicture()
+				);
 		return userRepo.save(newUser);
 	}
 
 	public Page<User> find(int page, int size, String sort) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); // (numero di pagina, numero di elementi per
-																		// pagina, nome del campo per cui sortare)
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); 
+															
 		return userRepo.findAll(pageable);
 	}
 
@@ -56,6 +58,9 @@ public class User_Service {
 		found.setEmail(body.getEmail());
 		found.setName(body.getName());
 		found.setSurname(body.getSurname());
+		if (body.getProfilePicture() != null && !body.getProfilePicture().isEmpty()) {
+	        found.setProfilePicture(body.getProfilePicture());
+	    }
 
 		return userRepo.save(found);
 	}
@@ -65,8 +70,15 @@ public class User_Service {
 		userRepo.delete(found);
 	}
 
+//	public User findByEmail(String email) {
+//		return userRepo.findByEmail(email)
+//				.orElseThrow(() -> new NotFoundException("Account with this mail:  [" + email + "] not found"));
+//	}
+	
 	public User findByEmail(String email) {
-		return userRepo.findByEmail(email)
-				.orElseThrow(() -> new NotFoundException("Account with this mail:  [" + email + "] not found"));
+		User user = userRepo.findByEmail(email).orElse(null);
+		return user;
 	}
+	
+	
 }

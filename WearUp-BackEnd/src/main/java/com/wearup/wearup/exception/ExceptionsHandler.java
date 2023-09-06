@@ -28,25 +28,25 @@ public class ExceptionsHandler {
 	@ExceptionHandler(BadRequestException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorsPayload handleBadRequest(BadRequestException e) {
-		return new ErrorsPayload(e.getMessage(), new Date(), 13212);
+		return new ErrorsPayload(e.getMessage(), new Date());
 	}
 
 	@ExceptionHandler(UnauthorizedException.class)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public ErrorsPayload handleUnauthorized(UnauthorizedException e) {
-		return new ErrorsPayload(e.getMessage(), new Date(), 21323);
+		return new ErrorsPayload(e.getMessage(), new Date());
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	public ErrorsPayload handleForbidden(AccessDeniedException e) {
-		return new ErrorsPayload("Non hai accesso a questo endpoint", new Date(), 21323);
+		return new ErrorsPayload("Non hai accesso a questo endpoint", new Date());
 	}
 
 	@ExceptionHandler(NotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ErrorsPayload handleNotFound(NotFoundException e) {
-		return new ErrorsPayload(e.getMessage(), new Date(), 1239132);
+		return new ErrorsPayload(e.getMessage(), new Date());
 	}
 
 	@ExceptionHandler(Exception.class)
@@ -54,7 +54,7 @@ public class ExceptionsHandler {
 	public ErrorsPayload handleGeneric(Exception e) {
 		log.error(e.getMessage());
 		e.printStackTrace();
-		return new ErrorsPayload("Errore generico, risolveremo il prima possibile", new Date(), 2321);
+		return new ErrorsPayload("Errore generico, risolveremo il prima possibile", new Date());
 	}
 
 }

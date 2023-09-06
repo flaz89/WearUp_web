@@ -1,6 +1,7 @@
 package com.wearup.wearup.brand;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,8 +30,12 @@ public class Brand implements UserDetails{
 	private long id;
 	@Column(nullable = false, unique = true)
 	private String brandName;
+	@Column(nullable = false)
 	private String address;
+	@Column(nullable = false)
 	private String city;
+	@Column(nullable = false)
+	private String country;
 	private String phoneNumber;
 	@Column(nullable = false, unique = true)
 	private String vatNumber;
@@ -40,18 +45,21 @@ public class Brand implements UserDetails{
 	@Enumerated(EnumType.STRING)
 	private User_Role role; 
 	private String profilePicture;
+	private Date subscriptionDate;
 	
-	public Brand(String brandName, String address, String city, String phoneNumber, String vATnumber, String email,
-			String password) {
+	public Brand(String brandName, String address, String city,String country, String phoneNumber, String vATnumber, String email,
+			String password, String profilePicture) {
 		this.brandName = brandName;
 		this.address = address;
 		this.city = city;
+		this.country = country;
 		this.phoneNumber = phoneNumber;
 		this.vatNumber = vATnumber;
 		this.email = email;
 		this.password = password;
 		this.role = User_Role.BRAND;
-		this.profilePicture = "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
+		this.profilePicture = (profilePicture != null) ? profilePicture : "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
+		this.subscriptionDate = new Date();
 	}
 
 	@Override
@@ -83,6 +91,6 @@ public class Brand implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 	
 }
