@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.brand.Brand_Service;
+import com.wearup.wearup.brand.payloads.BrandRequestPayload;
 import com.wearup.wearup.exception.UnauthorizedException;
 import com.wearup.wearup.user.User;
 import com.wearup.wearup.user.User_Service;
@@ -52,11 +53,11 @@ public class AuthController {
 
 		if (bcrypt.matches(body.getPassword(), user.getPassword())) {
 
-			String token = jwtTools.createToken(user);
+			String token = jwtTools.createUserToken(user);
 			return new LoginSuccessfullPayload(token);
 
 		} else {
-			throw new UnauthorizedException("Unalid credentials!");
+			throw new UnauthorizedException("Invalid credentials!");
 		}
 	}
 	
@@ -64,19 +65,10 @@ public class AuthController {
 	
 	@PostMapping("/register/brand")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Brand saveBrand(@RequestBody @Validated UserRequestPayload body) {
-		
-		Brand brand = brandSrv.findbyEmail(body.getEmail());
-		
-		if (bcrypt.matches(body.getPassword(), brand.getPassword())) {
-
-			String token = jwtTools.createToken(user);
-			return new LoginSuccessfullPayload(token);
-
-		} else {
-			throw new UnauthorizedException("Credenziali non valide!");
-		}
-		return null;
+	public Brand saveBrand(@RequestBody @Validated BrandRequestPayload body) {
+		body.setPassword(bcrypt.encode(body.getPassword()));
+		Brand created = brandSrv.create(body);
+		return created;
 	}
 
 }

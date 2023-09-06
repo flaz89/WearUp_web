@@ -20,7 +20,7 @@ public class Brand_Service {
 	public Brand create(BrandRequestPayload body) {
 		// check if VATnumber already in use
 		brandRepo.findBrandByVatNumber(body.getVatNumber()).ifPresent(user -> {
-			throw new BadRequestException("L'email è già stata utilizzata");
+			throw new BadRequestException("Vat number is already used");
 		});
 		
 		Brand newBrand = new Brand(
