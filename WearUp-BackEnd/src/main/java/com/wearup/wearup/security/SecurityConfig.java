@@ -29,8 +29,8 @@ public class SecurityConfig {
 
 		http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/brands/home").permitAll());
-		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**", "/brands/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**", "/products/home").permitAll());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**", "/brands/**", "/products/**").authenticated());
 		
 
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

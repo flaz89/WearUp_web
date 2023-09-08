@@ -43,11 +43,14 @@ public class Brand_Service {
 				body.getVatNumber(),
 				body.getEmail(),
 				body.getPassword(),
-				body.getProfilePicture()
+				body.getProfilePicture(),
+				body.getWebSite()
 				);
 
 		return brandRepo.save(newBrand);
 	}
+	
+	// ---------------------------------------------- OTTIENI LISTA BRAND
 	
 	public Page<Brand> find(int page, int size, String sort) {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); // (numero di pagina, numero di elementi per
@@ -74,6 +77,7 @@ public class Brand_Service {
 		found.setVatNumber(body.getVatNumber());
 		found.setEmail(body.getEmail());
 		found.setPassword(bcrypt.encode(body.getPassword()));
+		found.setWebSite(body.getWebSite());
 		if (body.getProfilePicture() != null && !body.getProfilePicture().isEmpty()) {
 	        found.setProfilePicture(body.getProfilePicture());
 	    }

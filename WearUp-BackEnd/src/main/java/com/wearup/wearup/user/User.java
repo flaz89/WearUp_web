@@ -31,17 +31,23 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue
 	private UUID id;
+	
+	@Column(nullable = false)
 	private String name;
-
-
+	@Column(nullable = false)
 	private String surname;
 	@Column(nullable = false, unique = true)
 	private String email;
+	@Column(nullable = false)
 	private String password;
+	
 	@Enumerated(EnumType.STRING)
-	private User_Role role;
+	private User_Role role = User_Role.USER;
+	
 	private String profilePicture;
 	private Date subscriptionDate;
+	
+	//private List<Favorite> favorites;
 
 	public User(String name, String surname, String email, String password, String profilePicture) {
 		this.name = name;

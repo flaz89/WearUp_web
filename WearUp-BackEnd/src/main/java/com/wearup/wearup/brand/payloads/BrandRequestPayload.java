@@ -25,4 +25,5 @@ public class BrandRequestPayload {
 	@NotNull(message = "Password is required")
 	private String password;
 	private String profilePicture;
+	private String  webSite;
 }

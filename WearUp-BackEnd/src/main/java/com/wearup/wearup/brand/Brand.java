@@ -42,13 +42,16 @@ public class Brand implements UserDetails{
 	@Column(nullable = false, unique = true)
 	private String email;
 	private String password;
+	private String profilePicture;
+	private String webSite;
+	
 	@Enumerated(EnumType.STRING)
 	private User_Role role; 
-	private String profilePicture;
 	private Date subscriptionDate;
 	
+	
 	public Brand(String brandName, String address, String city,String country, String phoneNumber, String vATnumber, String email,
-			String password, String profilePicture) {
+			String password, String profilePicture, String webSite) {
 		this.brandName = brandName;
 		this.address = address;
 		this.city = city;
@@ -59,6 +62,7 @@ public class Brand implements UserDetails{
 		this.password = password;
 		this.role = User_Role.BRAND;
 		this.profilePicture = (profilePicture != null) ? profilePicture : "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
+		this.webSite = webSite;
 		this.subscriptionDate = new Date();
 	}
 

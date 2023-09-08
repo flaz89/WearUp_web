@@ -41,6 +41,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 		jwttools.verifyToken(token);
 
 		String id = jwttools.extractSubject(token);
+		
 		User currentUser = userSrv.findById(UUID.fromString(id));
 		
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(currentUser, null,
@@ -64,7 +65,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 	    
 	    System.out.println("Path: " + path);
 	    
-	    return matcher.match("/auth/**", path) || matcher.match("/brands/home", path);
+	    return matcher.match("/auth/**", path) || matcher.match("/products/home", path);
 	}
 
 }

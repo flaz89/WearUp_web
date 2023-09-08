@@ -26,11 +26,12 @@ public class User_Service {
 		this.userRepo = _userRepo;
 	}
 	
-
+	// -------------------------------------------------------- CREO UN UTENTE
+	
 	public User create(UserRequestPayload body) {
 		// check if email already in use
 		userRepo.findByEmail(body.getEmail()).ifPresent(user -> {
-			throw new BadRequestException("L'email è già stata utilizzata");
+			throw new BadRequestException("This Email [" + body.getEmail() +"] already exist");
 		});
 		
 		User newUser = new User(
@@ -43,15 +44,21 @@ public class User_Service {
 		return userRepo.save(newUser);
 	}
 
+	// ------------------------------------------------------- OTTENGO LA LISTA DI TUTTI GLI UTENTI
+	
 	public Page<User> find(int page, int size, String sort) {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); 
 															
 		return userRepo.findAll(pageable);
 	}
 
+	// ------------------------------------------------------- CERCO UTENTE by ID
+	
 	public User findById(UUID id) throws NotFoundException {
 		return userRepo.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
+	
+	// ------------------------------------------------------- AGGIORNO e CERCO UTENTE by ID
 
 	public User findByIdAndUpdate(UUID id, UserRequestPayload body) throws NotFoundException {
 		User found = this.findById(id);
@@ -65,10 +72,15 @@ public class User_Service {
 		return userRepo.save(found);
 	}
 
+	
+	// ------------------------------------------------------- CANCELLO UTENTE by ID
+	
 	public void findByIdAndDelete(UUID id) throws NotFoundException {
 		User found = this.findById(id);
 		userRepo.delete(found);
 	}
+	
+	// ------------------------------------------------------- CERCO UTENTE by EMAIL
 
 //	public User findByEmail(String email) {
 //		return userRepo.findByEmail(email)
