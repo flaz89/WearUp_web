@@ -9,19 +9,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.wearup.wearup.brand.Brand;
-import com.wearup.wearup.brand.Brand_Repository;
 import com.wearup.wearup.brand.Brand_Service;
 import com.wearup.wearup.brand.payloads.BrandResponseList;
 import com.wearup.wearup.exception.BadRequestException;
 import com.wearup.wearup.exception.NotFoundException;
 import com.wearup.wearup.product.payloads.ProductRequestPayload;
 import com.wearup.wearup.product.payloads.ProductResponseList;
-import com.wearup.wearup.security.JWTTools;
+import jakarta.persistence.criteria.Predicate;
 
 @Service
 public class Product_Service {
@@ -38,7 +38,7 @@ public class Product_Service {
 	
 	
 	
-	//METODI per convertire le entità a entità più semplici ed evitare lo stack overflow
+	//METODI per convertire le entità a entità più semplici (rimuovo parametri di relazione) ed evitare lo stack overflow
 	
 	private ProductResponseList convertToProductResponseList(Product product) {
 	    Brand brand = product.getBrand();
@@ -71,6 +71,72 @@ public class Product_Service {
 	            brand.getWebSite()
 	    );
 	}
+	
+	// ---------------------------------------- RICERCA PER FILTRI ---------------------//
+
+	public Page<ProductResponseList> findProducts(
+	    String productCode, 
+	    String productName, 
+	    String brand, 
+	    Product_Type type,
+	    Double minPrice, 
+	    Double maxPrice, 
+	    Integer minlikeCounter, 
+	    Integer maxlikeCounter,
+	    String sortBy, 
+	    String sortDirection,
+	    int page, 
+	    int size
+	    ) {
+
+		
+		Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
+	    Pageable pageable = PageRequest.of(page, size, sort);
+	    
+	    Specification<Product> spec = (root, query, criteriaBuilder) -> {
+	        List<Predicate> predicates = new ArrayList<>();
+	        
+	        if(productCode != null) {
+	            predicates.add(criteriaBuilder.equal(root.get("productCode"), productCode));
+	        }
+	        
+	        if(productName != null) {
+	            predicates.add(criteriaBuilder.like(root.get("productName"), productName + "%"));
+	        }
+	        
+	        if(brand != null) {
+	        	System.out.println(brand);
+	            predicates.add(criteriaBuilder.like(root.join("brand").get("brandName"), "%" + brand + "%"));
+	        }
+	        
+	        if(type != null) {
+	            predicates.add(criteriaBuilder.equal(root.get("type"), type));
+	        }
+	        
+	        if(minPrice != null) {
+	            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("price"), minPrice));
+	        }
+	        
+	        if(maxPrice != null) {
+	            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice));
+	        }
+	        
+	        if(minlikeCounter != null) {
+	            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("likeCounter"), minlikeCounter));
+	        }
+
+	        if(maxlikeCounter != null) {
+	            predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("likeCounter"), maxlikeCounter));
+	        }
+
+	        
+	        return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+	    };
+	    
+	    Page<Product> productPage = prodRepo.findAll(spec, pageable);
+	    return productPage.map(this::convertToProductResponseList);
+	}
+
 	
 	// ------------------------------------------------------- OTTENGO TUTTE LE CATEGORIE DEL PRODOTTO 
 	
@@ -106,12 +172,22 @@ public class Product_Service {
     }
 	
 	
-	// ------------------------------------------------------- OTTENGO LA LISTA DI TUTTI I PRODOTTI
+	// ------------------------------------------------------- OTTENGO LA LISTA DI TUTTI I PRODOTTI (ordine Desc di default, dal piu recente al piùvecchio)
 	
-	public Page<ProductResponseList> find(int page, int size, String sort) {
-		Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); 
-		Page<Product> productPage = prodRepo.findAll(pageable);
-        return productPage.map(this::convertToProductResponseList);
+	public Page<ProductResponseList> find(int page, int size, String sortBy) {
+	    // Divido la stringa "sortBy" in campo e direzione
+	    String[] sortComponents = sortBy.split(",");
+	    String sortField = sortComponents[0];
+	    Sort.Direction sortDirection = Sort.Direction.fromString(sortComponents[1]);
+
+	    // Creo l'oggetto Pageable
+	    Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortField));
+
+	    // Eseguo la query
+	    Page<Product> productPage = prodRepo.findAll(pageable);
+
+	    // Converto i risultati
+	    return productPage.map(this::convertToProductResponseList);
 	}
 	
 	// ------------------------------------------------------- OTTENGO LA LISTA DEI 4 MOST VIEWD
@@ -131,9 +207,11 @@ public class Product_Service {
 	
 	// ------------------------------------------------------- OTTENGO LA LISTA DI TUTTI I PRODOTTI per FASCIA DI PREZZO
 	
-	public List<Product> getProductsByPriceRange(double minPrice, double maxPrice) {
-        return prodRepo.findProductsByPriceRange(minPrice, maxPrice);
-    }
+	public Page<ProductResponseList> getProductsByPriceRange(double minPrice, double maxPrice, int page, int size) {
+	    Pageable pageable = PageRequest.of(page, size);
+	    Page<Product> productPage = prodRepo.findProductsByPriceRange(minPrice, maxPrice, pageable);
+	    return productPage.map(this::convertToProductResponseList);
+	}
 	
 	// -------------------------------------------------------- CREO UN PRODOTTO x BRAND
 	

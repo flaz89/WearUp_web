@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.brand.Brand_Controller;
 import com.wearup.wearup.product.payloads.ProductRequestPayload;
 import com.wearup.wearup.product.payloads.ProductResponseList;
@@ -40,16 +41,68 @@ public class Product_Controller {
 		return prodSrv.findTop4ProductsByLikes();
 	}
 	
-	// -------------------------------------------- GET ALL PRODUCT LIST x [BRAND/USER/ADMIN]
+	// -------------------------------------------- GET ALL PRODUCT LIST x ordinati per i più recenti\ [BRAND/USER/ADMIN]
 	@PreAuthorize("hasAuthority('ADMIN') "
-			+ "or hasAuthority('BRAND') ")
-	@GetMapping
+			+ "or hasAuthority('BRAND') "
+			+ "or hasAuthority('USER') ")
+	@GetMapping("/all")
 	public Page<ProductResponseList> getProducts(
 			@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size, 
-			@RequestParam(defaultValue = "id") String sortBy) {
+			@RequestParam(defaultValue = "creationDate,desc") String sortBy) {
 		return prodSrv.find(page, size, sortBy);
 	}
+	
+	// -------------------------------------------- SEARCH PRODUCT by FILTER x [BRAND/USER/ADMIN]
+	@PreAuthorize("hasAuthority('ADMIN') "
+			+ "or hasAuthority('BRAND') "
+			+ "or hasAuthority('USER') ")
+	@GetMapping("/search")
+    public Page<ProductResponseList> getProducts(
+        @RequestParam(required = false) String productCode,
+        @RequestParam(required = false) String productName,
+        @RequestParam(required = false) String brand,
+        @RequestParam(required = false) Product_Type type,
+        @RequestParam(required = false) Double minPrice,
+        @RequestParam(required = false) Double maxPrice,
+        @RequestParam(required = false) Integer minLikeCounter,
+        @RequestParam(required = false) Integer maxLikeCounter,
+        @RequestParam(defaultValue = "creationDate") String sortBy,  // Default a creationDate
+        @RequestParam(defaultValue = "DESC") String sortDirection,  // Nuovo parametro, con default a ASC
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+    ) {
+        return prodSrv.findProducts(
+            productCode, 
+            productName, 
+            brand,
+            type, 
+            minPrice, 
+            maxPrice, 
+            minLikeCounter, 
+            maxLikeCounter,
+            sortBy, 
+            sortDirection,
+            page, 
+            size
+        );
+	}
+	
+	// -------------------------------------------- GET ALL PRODUCT LIST by PRICE RANGE x [BRAND/USER/ADMIN]
+		@PreAuthorize("hasAuthority('ADMIN') "
+				+ "or hasAuthority('BRAND') "
+				+ "or hasAuthority('USER') ")
+		@GetMapping("/byPriceRange")
+		public Page<ProductResponseList> getProductsByPrice(
+				@RequestParam double minPrice,
+				@RequestParam double maxPrice,
+				@RequestParam(defaultValue = "0") int page,
+		        @RequestParam(defaultValue = "10") int size) {
+			Page<ProductResponseList> products = prodSrv.getProductsByPriceRange(minPrice, maxPrice, page, size);
+		    return products;
+		}
+		
+		
 	
 	// -------------------------------------------- CREATE PRODUCT x [BRAND]
 	
@@ -58,6 +111,7 @@ public class Product_Controller {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProductResponseList createProduct(@RequestBody ProductRequestPayload body) {
 		ProductResponseList newProduct = prodSrv.createProduct(body);
+		log.warn("Product [" + newProduct.getId() + "] created correctly");
 		return newProduct;
 	}
 	
