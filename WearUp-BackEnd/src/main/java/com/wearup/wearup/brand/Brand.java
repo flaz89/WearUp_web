@@ -1,29 +1,33 @@
 package com.wearup.wearup.brand;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
+import com.wearup.wearup.product.Product;
+import com.wearup.wearup.security.AuthenticatedEntity;
 import com.wearup.wearup.user.User_Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "brands")
 @Data
 @NoArgsConstructor
-public class Brand implements UserDetails{
+public class Brand implements AuthenticatedEntity{
 
 	@Id
 	@GeneratedValue
@@ -49,6 +53,9 @@ public class Brand implements UserDetails{
 	private User_Role role; 
 	private Date subscriptionDate;
 	
+	@OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    private List<Product> products = new ArrayList<>();;
+	
 	
 	public Brand(String brandName, String address, String city,String country, String phoneNumber, String vATnumber, String email,
 			String password, String profilePicture, String webSite) {
@@ -65,6 +72,12 @@ public class Brand implements UserDetails{
 		this.webSite = webSite;
 		this.subscriptionDate = new Date();
 	}
+	
+	// costruttore usato solo per la fase di deserializzazione nell'autenticazione
+	public Brand(String brandName) {
+	    this.brandName = brandName;
+	}
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -3,6 +3,7 @@ package com.wearup.wearup.product;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wearup.wearup.brand.Brand;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,11 +33,14 @@ public class Product {
 	@Column(nullable = false)
 	private String productName;
 	private String description;
-	@Column(nullable = false)
-	private Brand brand;
-	@Column(nullable = false)
 	
+	@ManyToOne
+    @JoinColumn(name = "brand_id",nullable = false)
+	private Brand brand;
+	
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	private Product_Type type;
 	
 	@Column(nullable = false)

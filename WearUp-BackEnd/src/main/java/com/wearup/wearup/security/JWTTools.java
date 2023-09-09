@@ -9,6 +9,7 @@ import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.exception.UnauthorizedException;
 import com.wearup.wearup.user.User;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -25,6 +26,7 @@ public class JWTTools {
 		String token = Jwts
 				.builder()
 				.setSubject(u.getId().toString()) 
+				.claim("entityType", "User")
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
 				.signWith(Keys.hmacShaKeyFor(secret.getBytes())) 
@@ -35,7 +37,8 @@ public class JWTTools {
 	public String createBrandToken(Brand b) {
 		String token = Jwts
 				.builder()
-				.setSubject(String.valueOf(b.getId())) 
+				.setSubject(String.valueOf(b.getId()))
+				.claim("entityType", "Brand")
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
 				.signWith(Keys.hmacShaKeyFor(secret.getBytes())) 
@@ -66,4 +69,18 @@ public class JWTTools {
 				.getBody()
 				.getSubject();
 	}
+	
+	public String extractEntityType(String token) {
+		
+	    Claims claims = Jwts
+	    		.parserBuilder()
+	            .setSigningKey(Keys.hmacShaKeyFor(secret.getBytes()))
+	            .build()
+	            .parseClaimsJws(token)
+	            .getBody();
+
+	    return claims.get("entityType", String.class);
+	}
+	
+	
 }

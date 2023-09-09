@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.wearup.wearup.brand.Brand_Service;
 import com.wearup.wearup.exception.UnauthorizedException;
+import com.wearup.wearup.product.Product_Service;
 import com.wearup.wearup.user.User;
 import com.wearup.wearup.user.User_Service;
 
@@ -21,11 +24,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {
-
+	
 	@Autowired
-	JWTTools jwttools;
+	private JWTTools jwttools;
+	
 	@Autowired
-	User_Service userSrv;
+	private User_Service userSrv;
+	
+	@Autowired
+	@Lazy
+	private Brand_Service brandSrv;
+	
+	
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -42,10 +52,25 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
 		String id = jwttools.extractSubject(token);
 		
-		User currentUser = userSrv.findById(UUID.fromString(id));
 		
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(currentUser, null,
-				currentUser.getAuthorities());
+		// ---------------------------
+		String entityType = jwttools.extractEntityType(token);  // ipotetico metodo per ottenere il tipo di entità
+		System.out.println(entityType);
+	    AuthenticatedEntity authenticatedEntity = null;
+
+	    if ("User".equals(entityType)) {
+	        authenticatedEntity = userSrv.findById(UUID.fromString(id));
+	    } else if ("Brand".equals(entityType)) {
+	        authenticatedEntity = brandSrv.findById(Long.parseLong(id));
+	    } else {
+	        throw new UnauthorizedException("Tipo di entità non valido");
+	    }
+		// ---------------------------
+		
+		//User currentUser = userSrv.findById(UUID.fromString(id));
+		
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(authenticatedEntity, null,
+				authenticatedEntity.getAuthorities());
 
 		SecurityContextHolder.getContext().setAuthentication(authToken);
 
