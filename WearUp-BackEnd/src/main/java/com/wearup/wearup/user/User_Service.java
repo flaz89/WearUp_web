@@ -1,5 +1,6 @@
 package com.wearup.wearup.user;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +9,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wearup.wearup.exception.BadRequestException;
 import com.wearup.wearup.exception.NotFoundException;
+import com.wearup.wearup.uploadCloudinary.Cloudinary_Service;
 import com.wearup.wearup.user.payloads.UserRequestPayload;
 
 
@@ -20,11 +23,16 @@ public class User_Service {
 	
 
 	private final User_Repository userRepo;
+	
+	private final Cloudinary_Service cloudinarySrv;
 
 	@Autowired
-	public User_Service(User_Repository _userRepo) {
+	public User_Service(User_Repository _userRepo, Cloudinary_Service _cloudinarySrv) {
 		this.userRepo = _userRepo;
+		this.cloudinarySrv = _cloudinarySrv;
 	}
+	
+	
 	
 	// -------------------------------------------------------- CREO UN UTENTE
 	
@@ -34,13 +42,17 @@ public class User_Service {
 			throw new BadRequestException("This Email [" + body.getEmail() +"] already exist");
 		});
 		
+		String defaultProfilePictureUrl = "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
+		String profilePictureUrl = (body.getProfilePicture() != null) ? body.getProfilePicture() : defaultProfilePictureUrl;
+		
 		User newUser = new User(
 				body.getName(), 
 				body.getSurname(),
 				body.getEmail(),
 				body.getPassword(),
-				body.getProfilePicture()
+				profilePictureUrl
 				);
+		
 		return userRepo.save(newUser);
 	}
 
