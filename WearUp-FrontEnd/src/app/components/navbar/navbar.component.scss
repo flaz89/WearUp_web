@@ -1,0 +1,101 @@
+nav {
+  background-color: rgb(40, 40, 40);
+  height: 100px;
+
+
+  .container-fluid{
+
+    .navbar-toggler{
+      border: double 4px transparent;
+      background-image: linear-gradient(rgb(40, 40, 40), rgb(40, 40, 40)), linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%, #E94E1B 66.79%, #6C2483 103.12%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      //color: white;
+
+      --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .drop-menu{
+      background-color: rgb(40, 40, 40);
+      border-radius: 30px;
+    }
+
+    .nav-link {
+      text-decoration-line: underline;
+      color: white;
+      font-size: 0.9em;
+      font-weight: 300;
+
+      .nav-text {
+        display: inline-block;
+        background: white;
+        -webkit-background-clip: text;
+        color: transparent;
+        transition: transform 0.3s ease, background 0.3s ease;
+        transform-origin: center;
+
+        &:hover{
+          background: linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%);
+          -webkit-background-clip: text;
+          color: transparent;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    #login-btn{
+      border-radius: 20px;
+      background: linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%, #E94E1B 66.79%, #6C2483 103.12%);
+      border: none;
+      font-weight: 700;
+      color: white;
+      padding: 10px 20px;
+      transition: transform 0.1s ease;
+
+      &:hover{
+        background: linear-gradient(258deg, rgba(255, 238, 0, 0.8) -5.87%, rgba(239, 122, 12, 0.8) 30.46%, rgba(233, 79, 27, 0.8) 66.79%, rgba(107, 36, 131, 0.8) 103.12%);
+      }
+
+      &:active {
+        transform: scale(0.9);
+
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  nav {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .container-fluid {
+    padding:0 100px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  nav {
+
+  }
+
+  .container-fluid {
+    padding: 0 30px;
+  }
+
+  .navbar-collapse{
+    background-color: rgb(40, 40, 40);
+    position: absolute;
+    width: auto;
+    border-radius: 0 0 30px 30px;
+    padding: 12px;
+    top: 100%;
+    right: 0%;
+  }
+
+  #login-btn{
+    margin-top: 20px;
+  }
+}
+
