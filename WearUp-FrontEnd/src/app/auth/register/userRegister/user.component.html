@@ -1,0 +1,56 @@
+<div class="container">
+  <!-- Utilizzo di Bootstrap per il layout -->
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Form per l'immagine -->
+      <form [formGroup]="imageForm" class="mb-4">
+        <div class="form-group">
+          <label for="profilePicture" class="form-label">Profile Picture</label>
+          <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" #fileInput (change)="imageUploaded($event)">
+          <!-- Riquadro per mostrare l'immagine caricata -->
+          <div *ngIf="isImageLoaded" class="mt-3 position-relative">
+            <div class="d-flex justify-content-center">
+              <img [src]="imageSrc" alt="Uploaded Image" class="img-thumbnail rounded-5 img-square">
+            </div>
+            <!-- Icona per cancellare l'immagine -->
+            <button class="position-absolute bg-transparent border-0" style="top: 0; right: 0;" (click)="cancelImage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M29.4843 10.2007C31.6068 8.07817 31.6068 4.63687 29.4843 2.51434C27.3618 0.391816 23.9205 0.391816 21.798 2.51434L15.9978 8.31454L10.1994 2.51622C8.07691 0.393689 4.63561 0.393689 2.51308 2.51622C0.39055 4.63875 0.390551 8.08005 2.51308 10.2026L8.3114 16.0009L2.51305 21.7993C0.390524 23.9218 0.390523 27.3631 2.51305 29.4856C4.63558 31.6081 8.07688 31.6081 10.1994 29.4856L15.9978 23.6873L21.7961 29.4856C23.9186 31.6081 27.3599 31.6081 29.4824 29.4856C31.6049 27.363 31.6049 23.9217 29.4824 21.7992L23.6841 16.0009L29.4843 10.2007Z" fill="#FF0000"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <!-- Form per i dettagli -->
+      <form [formGroup]="detailsForm">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="surname" class="form-label">Surname</label>
+          <input type="text" class="form-control" id="surname" formControlName="surname">
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Pulsante Submit unico -->
+  <div class="row">
+    <div class="col-md-12 text-center mt-4">
+      <button class="btn btn-primary mb-5" (click)="onSubmit()" [disabled]="!imageForm.valid || !detailsForm.valid">Submit</button>
+    </div>
+  </div>
+</div>
+
+

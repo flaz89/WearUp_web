@@ -1,19 +1,27 @@
 package com.wearup.wearup.security;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.brand.Brand_Service;
 import com.wearup.wearup.brand.payloads.BrandRequestPayload;
 import com.wearup.wearup.exception.UnauthorizedException;
+import com.wearup.wearup.uploadCloudinary.Cloudinary_Service;
 import com.wearup.wearup.user.User;
 import com.wearup.wearup.user.User_Service;
 import com.wearup.wearup.user.payloads.LoginSuccessfullPayload;
@@ -34,6 +42,34 @@ public class AuthController {
 
 	@Autowired
 	PasswordEncoder bcrypt;
+	
+	@Autowired
+	private Cloudinary_Service cloudSrv;
+	
+	// ---------------------------------------------- UPLOAD USER PROFILE PICTURE
+	@PostMapping("/upload-user-image")
+    public ResponseEntity<String> uploadUserImage(@RequestParam("file") MultipartFile file) {
+        try {
+        	String originalFilename = file.getOriginalFilename();
+            String fileExtension = "";
+            
+            if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+                fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+            }
+            
+            List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+            
+            if (!allowedExtensions.contains(fileExtension)) {
+                return ResponseEntity.badRequest().body("Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+            }
+        	
+        	String folderName = "WearUp/user-images";
+            String url = cloudSrv.uploadFile(file, folderName);
+            return ResponseEntity.ok(url);
+        } catch (IOException e) {
+            return ResponseEntity.badRequest().body("Failed to upload file: " + e.getMessage());
+        }
+    }
 	
 	// ---------------------------------------------- USER
 
@@ -85,6 +121,32 @@ public class AuthController {
 			throw new UnauthorizedException("Invalid credentials, retry again!");
 		}
 	}
+	
+	// ---------------------------------------------- UPLOAD BRAND PROFILE PICTURE
+		@PostMapping("/upload-brand-image")
+	    public ResponseEntity<String> uploadBrandImage(@RequestParam("file") MultipartFile file) {
+	        try {
+	        	String originalFilename = file.getOriginalFilename();
+	            String fileExtension = "";
+	            
+	            if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+	                fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+	            }
+	            
+	            List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+	            
+	            if (!allowedExtensions.contains(fileExtension)) {
+	                return ResponseEntity.badRequest().body("Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+	            }
+	        	
+	        	String folderName = "WearUp/brand-images";
+	            String url = cloudSrv.uploadFile(file, folderName);
+	            return ResponseEntity.ok(url);
+	        } catch (IOException e) {
+	            return ResponseEntity.badRequest().body("Failed to upload file: " + e.getMessage());
+	        }
+	    }
+	
 	// ---------------------------------------------- BRAND
 	
 	@PostMapping("/register/brand")

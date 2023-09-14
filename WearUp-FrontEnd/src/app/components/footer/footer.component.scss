@@ -1,0 +1,61 @@
+@import "../../../styles_partials/colors";
+
+.container-fluid{
+  background-color: $primary-black;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%, #E94E1B 66.79%, #6C2483 103.12%);
+  }
+
+  .store-btn {
+    display: inline-block;
+
+    img{
+      height: 50px;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+  }
+
+  ul{
+
+    li{
+
+      a{
+        color: $footer-gray;
+        text-decoration: none;
+        font-size: 0.9em;
+
+        &:hover{
+          color: rgb(183, 183, 183);
+        }
+      }
+    }
+  }
+
+  .copyright, .author{
+    color: $footer-gray;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 200;
+    line-height: normal;
+
+    a{
+      color: $footer-gray;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  img{
+    height: 20px;
+  }
+}

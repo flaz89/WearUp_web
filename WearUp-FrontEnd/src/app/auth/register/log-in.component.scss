@@ -1,0 +1,59 @@
+@import "../../../styles_partials/colors";
+
+main {
+  background:linear-gradient(86deg, rgba(108, 36, 131, 0.3) 0%, rgba(233, 78, 27, 0.30) 33.33%, rgba(239, 121, 12, 0.30) 66.67%, rgba(255, 237, 0, 0.30) 100%);
+  padding-top: 100px;
+  height: 100;
+
+  h1 {
+    font-weight: 400;
+    span {
+      font-weight: 900;
+    }
+  }
+
+  h4 {
+    font-weight: 400;
+  }
+
+  .container-btn{
+    height: 100%;
+    max-height: calc(100% - 203px);
+  }
+
+  #user, #brand{
+    width: 250px;
+    height: 250px;
+    border-radius: 40px;
+    background: #FFF;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.299);
+
+    &:active{
+      transform: scale(0.95);
+      box-shadow: 0px 5px 3px 1px rgba(0, 0, 0, 0.43);
+    }
+
+    &:hover{
+      background:linear-gradient(86deg, rgba(108, 36, 131, 0.7) 0%, rgba(233, 78, 27, 0.7) 33.33%, rgba(239, 121, 12, 0.7) 66.67%, rgba(255, 237, 0, 0.7) 100%);
+      path{
+        fill: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  main{
+    height: 100%;
+    a{
+      transform: scale(0.6);
+      #user, #brand{
+        transform: scale(1);
+
+        &:active{
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+}
