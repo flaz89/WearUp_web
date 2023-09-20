@@ -3,17 +3,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewChild, ElementRef } from '@angular/core';
 import { imageFileValidator } from '../uploadValidator';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserRegister } from 'src/app/model/UserRegister.interface';
+import { BrandRegister } from 'src/app/model/BrandRegister.interface';
 import { Router } from '@angular/router';
-
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-brand',
+  templateUrl: './brand.component.html',
+  styleUrls: ['./brand.component.scss']
 })
-export class UserComponent implements OnInit {
+export class BrandComponent implements OnInit {
 
   imageSrc: string = '';
   isImageLoaded:boolean = false;
@@ -28,8 +27,12 @@ export class UserComponent implements OnInit {
   serverMessageOk!:string;
   serverMessageError!:string;
 
+  countries: any[] = [];
+  selectedCountry: any;
 
-  constructor(private fb: FormBuilder, private authSrv:AuthService, private router: Router) { }
+
+
+  constructor(private fb: FormBuilder, private authSrv:AuthService, private router: Router, private http:HttpClient) { }
 
   ngOnInit(): void {
     this.imageForm = this.fb.group({
@@ -37,13 +40,30 @@ export class UserComponent implements OnInit {
     });
 
     this.detailsForm = this.fb.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      brandName: ['', Validators.required],
+      webSite: [null],
+      country: ['', Validators.required],
+      city: ['', Validators.required],
+      address: ['', Validators.required],
+      phoneNumber: [null],
+      vatNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+
+
+    this.http.get("https://countriesnow.space/api/v0.1/countries/states")
+      .subscribe(
+        (data: any) => {
+          this.countries = data.data || [];
+        },
+        error => {
+          console.error("Error fetching countries:", error);
+        }
+      );
   }
 
+  //-------------- GESTIONE IMMAGINI
   imageUploaded(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -65,31 +85,32 @@ export class UserComponent implements OnInit {
   }
 
 
-
+  //-------------- SUBMIT FORM
   onSubmit() {
     this.isLoading = true;
+
     if (this.imageForm.valid && this.detailsForm.valid) {
       const profilePictureValue = this.imageForm.get('profilePicture')?.value;
       if (profilePictureValue) {
         const formDataImage = new FormData();
         formDataImage.append('file', profilePictureValue);
 
-        this.authSrv.uploadUserImage(formDataImage).subscribe((response: any) => {
+        this.authSrv.uploadBrandImage(formDataImage).subscribe((response: any) => {
           // Ottieni l'URL dell'immagine caricata dal server
           const uploadedImageUrl = response.url;
           // Assegna l'URL all'oggetto UserRegister
-          const userRegisterData: UserRegister = {
+          const brandRegisterData: BrandRegister = {
             ...this.detailsForm.value,
             profilePicture: uploadedImageUrl
           };
           // Ora puoi effettuare la chiamata POST per registrare l'utente
-          this.authSrv.registerUser(userRegisterData).subscribe(response => {
+          this.authSrv.resgisterBrand(brandRegisterData).subscribe(response => {
             this.isLoading = false;
-            this.serverMessageOk = "User saved successfully";
+            this.serverMessageOk = "Brand saved successfully";
             console.log(response);
             setTimeout(() => {
               this.registrationSuccess.emit();
-            }, 1000);
+            }, 1500);
 
           }, error => {
             this.isLoading = false;
@@ -104,17 +125,17 @@ export class UserComponent implements OnInit {
         });
       } else {
         // Caso in cui non viene caricata un'immagine
-        const userRegisterData: UserRegister = {
+        const brandRegisterData: BrandRegister = {
           ...this.detailsForm.value
         };
         // Effettua la chiamata POST come al solito
-        this.authSrv.registerUser(userRegisterData).subscribe(response => {
+        this.authSrv.resgisterBrand(brandRegisterData).subscribe(response => {
           this.isLoading = false;
-          this.serverMessageOk = "User saved successfully";
+          this.serverMessageOk = "Brand saved successfully";
             console.log(response);
             setTimeout(() => {
-              this.registrationSuccess.emit();;
-            }, 1000);
+              this.registrationSuccess.emit();
+            }, 1500);
         }, error => {
           this.isLoading = false;
           this.serverMessageError = error.error.message;
@@ -123,5 +144,25 @@ export class UserComponent implements OnInit {
       }
     }
   }
+
+  ////-------------- ESTRAGGO e ORGANIZZO LE CITTA'
+  onCountryChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedCountryIso = selectElement.value;
+    this.selectedCountry = this.countries.find(country => country.iso2 === selectedCountryIso);
+
+    if (this.selectedCountry && this.selectedCountry.states) {
+      this.selectedCountry.states.sort((a:any, b:any) => {
+        if (a.state_code < b.state_code) {
+          return -1;
+        }
+        if (a.state_code > b.state_code) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+  }
+
 
 }

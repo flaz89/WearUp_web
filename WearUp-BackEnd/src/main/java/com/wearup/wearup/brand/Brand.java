@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import com.wearup.wearup.favorite.Favorite;
 import com.wearup.wearup.product.Product;
 import com.wearup.wearup.security.AuthenticatedEntity;
 import com.wearup.wearup.user.User_Role;
@@ -54,7 +56,8 @@ public class Brand implements AuthenticatedEntity{
 	private Date subscriptionDate;
 	
 	@OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
-    private List<Product> products = new ArrayList<>();;
+    private List<Product> products = new ArrayList<>();
+	
 	
 	
 	public Brand(String brandName, String address, String city,String country, String phoneNumber, String vATnumber, String email,

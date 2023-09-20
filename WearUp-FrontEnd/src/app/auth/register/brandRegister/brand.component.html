@@ -35,7 +35,7 @@
       <form [formGroup]="imageForm" class="mb-4">
         <div class="form-group">
           <div class="d-flex justify-content-between">
-            <label for="profilePicture" class="form-label">Profile Picture</label>
+            <label for="profilePicture" class="form-label">Brand Picture</label>
             <span class="info-text d-flex align-items-center"> .jpg / .jpeg / .png</span>
           </div>
           <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" #fileInput (change)="imageUploaded($event)">
@@ -43,33 +43,91 @@
       </form>
       <!-- Form per i dettagli -->
       <form [formGroup]="detailsForm">
+
         <div class="form-group mb-2">
-          <div class="d-flex justify-content-between">
-            <label for="name" class="form-label">Name*</label>
-            <span class="info-text d-flex align-items-center">at least 3 characters</span>
+            <label for="brandName" class="form-label">Brand name*</label>
+          <input type="text" class="form-control" id="brandName" formControlName="brandName">
+          <div *ngIf="detailsForm.get('brandName')?.invalid && (detailsForm.get('brandName')?.dirty || detailsForm.get('brandName')?.touched)">
+            <small class="text-danger" *ngIf="detailsForm.get('brandName')?.errors?.['required']">This field is required.</small>
           </div>
-          <input type="text" class="form-control" id="name" formControlName="name">
         </div>
+
         <div class="form-group mb-2">
-          <label for="surname" class="form-label">Surname*</label>
-          <input type="text" class="form-control" id="surname" formControlName="surname">
+          <label for="webSite" class="form-label">Website</label>
+          <input type="text" class="form-control" id="webSite" formControlName="webSite">
         </div>
+
+        <div class="form-group mb-2 d-flex">
+          <div class="row">
+            <div class="col-4 mb-2 mb-md-0">
+              <label for="country" class="form-label">Country*</label>
+              <select class="form-control" id="country" formControlName="country" (change)="onCountryChange($event)">
+                <option value="" disabled selected>Select</option>
+                <option *ngFor="let country of countries" [value]="country.iso2">{{country.name}}</option>
+              </select>
+            </div>
+            <div class="col-4 col-md-2 px-2">
+              <label for="city" class="form-label">City*</label>
+              <select class="form-control" id="city" formControlName="city">
+                <option value="" disabled selected>Select</option>
+                <option *ngFor="let city of selectedCountry?.states" [value]="city.state_code">{{city.state_code}}</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="form-group mb-2">
+                <label for="address" class="form-label">Address*</label>
+                <input type="text" class="form-control" id="address" formControlName="address">
+                <div *ngIf="detailsForm.get('address')?.invalid && (detailsForm.get('address')?.dirty || detailsForm.get('address')?.touched)">
+                  <small class="text-danger" *ngIf="detailsForm.get('address')?.errors?.['required']">This field is required.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-2">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-2">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-2">
+                <label for="vatNumber" class="form-label">VAT Number*</label>
+                <input type="text" class="form-control" id="vatNumber" formControlName="vatNumber">
+                <div *ngIf="detailsForm.get('vatNumber')?.invalid && (detailsForm.get('vatNumber')?.dirty || detailsForm.get('vatNumber')?.touched)">
+                  <small class="text-danger" *ngIf="detailsForm.get('vatNumber')?.errors?.['required']">This field is required.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
             <label for="email" class="form-label">Email*</label>
             <span class="info-text d-flex align-items-center">insert valid email</span>
           </div>
           <input type="email" class="form-control" id="email" formControlName="email">
+          <div *ngIf="detailsForm.get('email')?.invalid && (detailsForm.get('email')?.dirty || detailsForm.get('email')?.touched)">
+            <small class="text-danger" *ngIf="detailsForm.get('email')?.errors?.['required']">This field is required.</small>
+          </div>
         </div>
+
         <div class="form-group mb-2">
           <div class="d-flex justify-content-between">
             <label for="password" class="form-label">Password*</label>
             <span class="info-text d-flex align-items-center">6 characters minimum</span>
           </div>
           <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="detailsForm.get('password')?.invalid && (detailsForm.get('password')?.dirty || detailsForm.get('password')?.touched)">
+            <small class="text-danger" *ngIf="detailsForm.get('password')?.errors?.['required']">This field is required.</small>
+          </div>
         </div>
-      </form>
 
+      </form>
     </div>
   </div>
 
@@ -94,10 +152,11 @@
         <span *ngIf="serverMessageOk" class="text-success bg-success border border-success border-2 rounded-3 p-2" style="--bs-bg-opacity: .3;">{{ serverMessageOk }}</span>
         <span *ngIf="serverMessageError" class="text-danger bg-danger border border-danger border-2 rounded-3 p-2" style="--bs-bg-opacity: .3;">{{ serverMessageError }}</span>
       </div>
-      <button class="register-btn btn mb-5 mt-3" (click)="onSubmit()" [disabled]="!imageForm.valid || !detailsForm.valid">Register</button>
+      <button class="register-btn btn mb-5 mt-3" (click)="onSubmit()" [disabled]="!imageForm.valid || !detailsForm.valid" >Register</button>
     </div>
   </div>
 </div>
+
 
 
 

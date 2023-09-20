@@ -1,0 +1,183 @@
+@import "../../../styles_partials/colors";
+
+main{
+  height: calc(100vh - 203px);
+  background: linear-gradient(192deg, rgba(255, 242, 0, 0.50) -13.44%, rgba(245, 127, 35, 0.50) 24.97%, rgba(232, 78, 27, 0.50) 57.46%, rgba(102, 36, 131, 0.50) 100%);  padding-top: 100px;
+
+  // ---------------------------- COLONNA FORM
+
+  .form-container{
+    background-color: $primary-black;
+    color: white;
+
+    .form-control, .form-select{
+      background-color: rgba(255, 255, 255, 0.116);
+      border: 0;
+      color: white;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .form-label, .form-check-label{
+      font-size: smaller;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    button {
+      border-radius: 20px;
+      background: linear-gradient(192deg, rgba(255, 242, 0) -13.44%, rgba(245, 127, 35) 24.97%, rgba(232, 78, 27) 57.46%, rgba(102, 36, 131) 100%);
+      border: none;
+      font-weight: 700;
+      color: white;
+      padding: 8px 20px;
+      transition: transform 0.1s ease;
+
+      &:hover{
+        background: linear-gradient(192deg, rgba(255, 242, 0, 0.8) -13.44%, rgba(245, 127, 35, 0.8) 24.97%, rgba(232, 78, 27, 0.8) 57.46%, rgba(102, 36, 131, 0.8) 100%);
+      }
+
+      &:active {
+        transform: scale(0.95);
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.255);
+        color: white;
+      }
+    }
+
+    .form-check-input {
+      display: none;
+    }
+
+    .form-check-label::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+      position: relative;
+      top: 5px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+    }
+
+    /* Stile per il radio button selezionato */
+    .form-check-input:checked + .form-check-label::before {
+      background: linear-gradient(192deg, rgba(255, 242, 0) -13.44%, rgba(245, 127, 35) 24.97%, rgba(232, 78, 27) 57.46%, rgba(102, 36, 131) 100%);
+      border:1px solid #282828;
+      box-shadow: 0 0 0 3px #282828, 0 0 0 5px #fff;
+    }
+  }
+
+
+  .brand-menu-container{
+    max-height: 390px;
+    overflow-y: auto;
+
+    .brand-link-menu{
+      text-decoration: none;
+      color: $primary-black;
+
+      .create-new-product{
+        background: linear-gradient(192deg, rgba(255, 242, 0) -13.44%, rgba(245, 127, 35) 24.97%, rgba(232, 78, 27) 57.46%, rgba(102, 36, 131) 100%);
+        &:hover{
+          opacity: 0.75;
+        }
+        &:active{
+          transform: scale(0.95);
+        }
+      }
+
+      .box-elements{
+        background: white;
+        &:hover{
+          opacity: 0.75;
+        }
+        &:active{
+          transform: scale(0.95);
+        }
+
+
+
+        .image img{
+          width: 35px;
+          height: 30px;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  // -------------- barra scorrimento
+  .fixed-height-col, .brand-menu-container {
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+  }
+
+  .fixed-height-col::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+
+  .fixed-height-col::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  .brand-menu-container::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+  .brand-menu-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+  }
+
+  // ---------------------------------
+
+
+  // ---------------------------- COLONNA PRODOTTI
+  .fixed-height-col {
+    height: calc(100vh - 303px);
+    overflow-y: auto;
+  }
+
+  .products-column{
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2em; /* Spazio tra le card */
+
+      .card-link {
+        text-decoration: none;
+      }
+
+      .card {
+        border-radius: 20px;
+        background: linear-gradient(130deg, rgba(255, 255, 255, 0.20) 7.63%, rgba(255, 255, 255, 0.05) 69.86%);
+        box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(15px);
+        height: 250px;
+        width: 180px;
+        --bs-card-border-color:none;
+
+        &:hover{
+          opacity: 0.4;
+        }
+
+        &:active{
+          transform: scale(0.95);
+        }
+      }
+
+      .text-product{
+
+        p{
+          text-shadow: 4px 4px 4px 8px black
+        }
+      }
+
+    }
+  }
+
+}
+

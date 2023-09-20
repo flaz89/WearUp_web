@@ -22,17 +22,35 @@ public class JWTTools {
 	
 	// ---------------------------------------- CREAZIONE TOKEN PER UTENTI E BRAND
 
+//	public String createUserToken(User u) {
+//		String token = Jwts
+//				.builder()
+//				.setSubject(u.getId().toString()) 
+//				.claim("entityType", "User")
+//				.setIssuedAt(new Date(System.currentTimeMillis()))
+//				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
+//				.signWith(Keys.hmacShaKeyFor(secret.getBytes())) 
+//				.compact();
+//		return token;
+//	}
+	
 	public String createUserToken(User u) {
-		String token = Jwts
-				.builder()
-				.setSubject(u.getId().toString()) 
-				.claim("entityType", "User")
-				.setIssuedAt(new Date(System.currentTimeMillis()))
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
-				.signWith(Keys.hmacShaKeyFor(secret.getBytes())) 
-				.compact();
-		return token;
+	    String entityType = "User"; // Default value
+	    if ("ADMIN".equals(u.getRole().toString())) { // Supponendo che getRole() restituisca il ruolo dell'utente
+	        entityType = "Admin";
+	    }
+	    
+	    String token = Jwts
+	            .builder()
+	            .setSubject(u.getId().toString())
+	            .claim("entityType", entityType) // Imposta entityType in base al ruolo
+	            .setIssuedAt(new Date(System.currentTimeMillis()))
+	            .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))
+	            .signWith(Keys.hmacShaKeyFor(secret.getBytes()))
+	            .compact();
+	    return token;
 	}
+
 	
 	public String createBrandToken(Brand b) {
 		String token = Jwts
@@ -45,7 +63,7 @@ public class JWTTools {
 				.compact();
 		return token;
 	}
-
+	
 	public void verifyToken(String token) {
 		try {
 			Jwts

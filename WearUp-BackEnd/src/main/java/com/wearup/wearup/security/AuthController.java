@@ -2,7 +2,9 @@ package com.wearup.wearup.security;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,28 +50,40 @@ public class AuthController {
 	
 	// ---------------------------------------------- UPLOAD USER PROFILE PICTURE
 	@PostMapping("/upload-user-image")
-    public ResponseEntity<String> uploadUserImage(@RequestParam("file") MultipartFile file) {
-        try {
-        	String originalFilename = file.getOriginalFilename();
-            String fileExtension = "";
-            
-            if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
-                fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
-            }
-            
-            List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
-            
-            if (!allowedExtensions.contains(fileExtension)) {
-                return ResponseEntity.badRequest().body("Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
-            }
-        	
-        	String folderName = "WearUp/user-images";
-            String url = cloudSrv.uploadFile(file, folderName);
-            return ResponseEntity.ok(url);
-        } catch (IOException e) {
-            return ResponseEntity.badRequest().body("Failed to upload file: " + e.getMessage());
-        }
-    }
+	public ResponseEntity<Map<String, Object>> uploadUserImage(@RequestParam(value = "file", required = false) MultipartFile file) {
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	    	
+	    	if (file == null) {
+	            response.put("url", "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png");
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        }
+	    	
+	        String originalFilename = file.getOriginalFilename();
+	        String fileExtension = "";
+	        
+	        if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+	            fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+	        }
+	        
+	        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+	        
+	        if (!allowedExtensions.contains(fileExtension)) {
+	            response.put("error", "Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+	            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	        }
+	        
+	        String folderName = "WearUp/user-images";
+	        String url = cloudSrv.uploadFile(file, folderName);
+	        response.put("url", url);
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	        
+	    } catch (IOException e) {
+	        response.put("error", "Failed to upload file: " + e.getMessage());
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	    }
+	}
+
 	
 	// ---------------------------------------------- USER
 
@@ -124,28 +138,39 @@ public class AuthController {
 	
 	// ---------------------------------------------- UPLOAD BRAND PROFILE PICTURE
 		@PostMapping("/upload-brand-image")
-	    public ResponseEntity<String> uploadBrandImage(@RequestParam("file") MultipartFile file) {
-	        try {
-	        	String originalFilename = file.getOriginalFilename();
-	            String fileExtension = "";
-	            
-	            if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
-	                fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
-	            }
-	            
-	            List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
-	            
-	            if (!allowedExtensions.contains(fileExtension)) {
-	                return ResponseEntity.badRequest().body("Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
-	            }
-	        	
-	        	String folderName = "WearUp/brand-images";
-	            String url = cloudSrv.uploadFile(file, folderName);
-	            return ResponseEntity.ok(url);
-	        } catch (IOException e) {
-	            return ResponseEntity.badRequest().body("Failed to upload file: " + e.getMessage());
-	        }
-	    }
+		public ResponseEntity<Map<String, Object>> uploadBrandImage(@RequestParam(value = "file", required = false) MultipartFile file) {
+		    Map<String, Object> response = new HashMap<>();
+		    try {
+		    	
+		    	if (file == null) {
+		            response.put("url", "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png");
+		            return new ResponseEntity<>(response, HttpStatus.OK);
+		        }
+		    	
+		        String originalFilename = file.getOriginalFilename();
+		        String fileExtension = "";
+		        
+		        if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+		            fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+		        }
+		        
+		        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+		        
+		        if (!allowedExtensions.contains(fileExtension)) {
+		            response.put("error", "Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+		            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		        }
+		        
+		        String folderName = "WearUp/brand-images";
+		        String url = cloudSrv.uploadFile(file, folderName);
+		        response.put("url", url);
+		        return new ResponseEntity<>(response, HttpStatus.OK);
+		        
+		    } catch (IOException e) {
+		        response.put("error", "Failed to upload file: " + e.getMessage());
+		        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		    }
+		}
 	
 	// ---------------------------------------------- BRAND
 	

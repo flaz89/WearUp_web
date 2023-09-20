@@ -62,8 +62,10 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 	        authenticatedEntity = userSrv.findById(UUID.fromString(id));
 	    } else if ("Brand".equals(entityType)) {
 	        authenticatedEntity = brandSrv.findById(Long.parseLong(id));
+	    } else if ("Admin".equals(entityType)) {
+	        authenticatedEntity = userSrv.findById(UUID.fromString(id)); 
 	    } else {
-	        throw new UnauthorizedException("Tipo di entità non valido");
+	        throw new UnauthorizedException("Entity tyoe isn't valid!");
 	    }
 		// ---------------------------
 		

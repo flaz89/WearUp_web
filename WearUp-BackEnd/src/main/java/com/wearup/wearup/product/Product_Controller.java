@@ -68,9 +68,9 @@ public class Product_Controller {
         @RequestParam(required = false) Integer minLikeCounter,
         @RequestParam(required = false) Integer maxLikeCounter,
         @RequestParam(defaultValue = "creationDate") String sortBy,  // Default a creationDate
-        @RequestParam(defaultValue = "DESC") String sortDirection,  // Nuovo parametro, con default a ASC
+        @RequestParam(defaultValue = "ASC") String sortDirection,  // Nuovo parametro, con default a ASC
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size
+        @RequestParam(defaultValue = "20") int size
     ) {
         return prodSrv.findProducts(
             productCode, 

@@ -1,0 +1,17 @@
+.register-btn{
+  border-radius: 20px;
+  background: linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%, #E94E1B 66.79%, #6C2483 103.12%);
+  border: none;
+  font-weight: 700;
+  color: white;
+  padding: 8px 20px;
+  transition: transform 0.1s ease;
+  &:hover{
+    background: linear-gradient(258deg, rgba(255, 238, 0, 0.8) -5.87%, rgba(239, 122, 12, 0.8) 30.46%, rgba(233, 79, 27, 0.8) 66.79%, rgba(107, 36, 131, 0.8) 103.12%);
+  }
+  &:active {
+    transform: scale(0.95);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.255);
+    color: white;
+  }
+}

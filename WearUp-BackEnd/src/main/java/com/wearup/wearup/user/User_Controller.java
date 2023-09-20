@@ -40,9 +40,12 @@ public class User_Controller {
 	}
 	
 	// -------------------------------------------- FIND USER by ID
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN') "
+			+ "or hasAuthority('BRAND') "
+			+ "or hasAuthority('USER') ")
 	@GetMapping("/{userId}")
 	public User findById(@PathVariable UUID userId) {
+		System.out.println("ECCOMIIIIIIIII");
 		return userSrv.findById(userId);
 
 	}

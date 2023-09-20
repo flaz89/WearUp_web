@@ -16,6 +16,17 @@ export class LogInComponent implements OnInit {
     console.log("hai selezionato il form: " + button);
   }
 
+  getBack() {
+    this.selectedButton = null;
+    this.hideElements = false;
+    console.log("Stato resettato");
+  }
+
+
+  switchToAccess() {
+    this.selectedButton = 'access';
+  }
+
   constructor() { }
 
   ngOnInit(): void {

@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.wearup.wearup.favorite.Favorite;
 import com.wearup.wearup.security.AuthenticatedEntity;
 
 import jakarta.persistence.Column;
@@ -19,6 +20,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,7 +50,8 @@ public class User implements AuthenticatedEntity {
 	private String profilePicture;
 	private Date subscriptionDate;
 	
-	//private List<Favorite> favorites;
+	@OneToMany(mappedBy = "user")
+	private List<Favorite> favorites;
 
 	public User(String name, String surname, String email, String password, String profilePicture) {
 		this.name = name;
