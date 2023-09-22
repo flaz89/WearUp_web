@@ -9,10 +9,10 @@
 
           <form [formGroup]="searchForm" (ngSubmit)="onSubmit(token)" class="container mt-3 p-3">
             <div class="mb-2">
-              <input formControlName="productCode" type="text" class="form-control form-control-sm" placeholder="Product Code">
+              <input formControlName="productCode" type="text" class="form-control form-control-sm custom-input" placeholder="Product Code">
             </div>
             <div class="mb-2">
-              <input formControlName="productName" type="text" class="form-control form-control-sm" placeholder="Product Name">
+              <input formControlName="productName" type="text" class="form-control form-control-sm custom-input" placeholder="Product Name">
             </div>
 
             <div class="d-flex gap-3">
@@ -56,11 +56,11 @@
                   <label class="form-check-label" for="dateRadio">Date</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input formControlName="orderBy" type="radio" value="likes" class="form-check-input" id="likesRadio">
+                  <input formControlName="orderBy" type="radio" value="likeCounter" class="form-check-input" id="likesRadio">
                   <label class="form-check-label" for="likesRadio">Likes</label>
                 </div>
                 <div class="form-check form-check-inline">
-                  <input formControlName="orderBy" type="radio" value="name" class="form-check-input" id="nameRadio">
+                  <input formControlName="orderBy" type="radio" value="productName" class="form-check-input" id="nameRadio">
                   <label class="form-check-label" for="nameRadio">Name</label>
                 </div>
             </div>
@@ -76,7 +76,7 @@
         <!-- elenco brand -->
         <div class="brand-menu-container mt-3">
 
-          <a href="javascript:void(0)" (click)="createNewProduct()"  class="brand-link-menu create-new-product">
+          <a *ngIf="userType === 'Brand'" href="javascript:void(0)" (click)="createNewProduct()"  class="brand-link-menu create-new-product">
             <div class="d-flex justify-content-between align-items-center py-1 px-2 mb-2 me-2 rounded-4 create-new-product">
               <p class="m-0 pe-2 text-white" style=" font-weight: 700;">CREATE NEW PRODUCT</p>
               <div class="image rounded-3 overflow-hidden my-1">
@@ -185,44 +185,71 @@
       <!-- form di ricerca modale -->
       <div class="modal fade mt-5" id="searchModal" tabindex="1">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <!-- <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="container">
-                <div class="mb-1">
-                  <label class="form-label">Product Code</label>
-                  <input formControlName="productCode" type="text" class="form-control">
+          <div class="modal-content rounded-5">
+            <div class="modal-body rounded-4">
+              <form [formGroup]="searchForm" (ngSubmit)="onSubmit(token)" class="container mt-3 p-3">
+                <div class="mb-2">
+                  <input formControlName="productCode" type="text" class="form-control form-control-sm custom-input" placeholder="Product Code">
                 </div>
-                <div class="mb-1">
-                  <label class="form-label">Product Name</label>
-                  <input formControlName="productName" type="text" class="form-control">
+                <div class="mb-2">
+                  <input formControlName="productName" type="text" class="form-control form-control-sm custom-input" placeholder="Product Name">
                 </div>
-                <div class="mb-1">
-                  <label class="form-label">Brand</label>
-                  <select formControlName="brand" class="form-select">
-                    <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
-                  </select>
-                </div>
-                <div class="mb-1">
-                  <label class="form-label">Type</label>
-                  <select formControlName="type" class="form-select">
-                    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
-                  </select>
-                </div>
-                <div class="mb-1">
-                  <label class="form-label">Price Range</label>
-                  <input formControlName="price" type="range" class="form-range">
-                </div>
-                <div class="mb-1">
-                  <label class="form-label">Order By:</label><br>
 
-                  <div class="d-flex justify-content-center">
-
+                <div class="d-flex gap-3">
+                  <div class="mb-2 flex-grow-1">
+                    <select formControlName="brand" class="form-select form-select-sm">
+                      <option value="" disabled selected>Brand</option>
+                      <option *ngFor="let brand of brands" [value]="brand.brandName">{{ brand.brandName }}</option>
+                    </select>
                   </div>
-
+                  <div class="mb-2 flex-grow-1">
+                    <select formControlName="type" class="form-select form-select-sm">
+                      <option value="" disabled selected>Category</option>
+                      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+                    </select>
+                  </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Search</button>
-              </form> -->
+                <div class="d-flex ">
+                  <div class="mb-2 flex-grow-1 pe-3">
+                    <select formControlName="minPrice" class="form-select form-select-sm">
+                      <option value="" disabled selected>Min Price</option>
+                      <option *ngFor="let minPrice of minPrices" [value]="minPrice">{{ minPrice }}</option>
+                    </select>
+                  </div>
+                  <div class="mb-2 flex-grow-1">
+                    <select formControlName="maxPrice" class="form-select form-select-sm">
+                      <option value="" disabled selected>Max Price</option>
+                      <option *ngFor="let maxPrice of maxPrices" [value]="maxPrice">{{ maxPrice }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">Order By:</label><br>
+                    <div class="form-check form-check-inline">
+                      <input formControlName="orderBy" type="radio" value="price" class="form-check-input" id="priceRadio">
+                      <label class="form-check-label" for="priceRadio">Price</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input formControlName="orderBy" type="radio" value="creationDate" class="form-check-input" id="dateRadio">
+                      <label class="form-check-label" for="dateRadio">Date</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input formControlName="orderBy" type="radio" value="likeCounter" class="form-check-input" id="likesRadio">
+                      <label class="form-check-label" for="likesRadio">Likes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input formControlName="orderBy" type="radio" value="productName" class="form-check-input" id="nameRadio">
+                      <label class="form-check-label" for="nameRadio">Name</label>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -253,7 +280,7 @@
 
         <div *ngIf="!isLoading" class="card-container py-3 d-flex flex-wrap justify-content-center">
 
-          <a href="javascript:void(0)"  *ngFor="let product of productsList" class="card-link position-relative d-flex justify-content-center align-items-center">
+          <a href="javascript:void(0)" (click)="showProduct(product)"  *ngFor="let product of productsList" class="card-link position-relative d-flex justify-content-center align-items-center">
             <div class="card rounded-5 px-3 d-flex flex-column justify-content-center" (mouseover)="product.showTextProduct=true" (mouseout)="product.showTextProduct=false">
               <div class="d-flex justify-content-between align-items-center">
                 <h4 class="text-white m-0 fs-5">{{product.brand.brandName}}</h4>
@@ -264,8 +291,11 @@
               <div class="d-flex justify-content-center">
                   <img src="https://res.cloudinary.com/wearup/image/upload/v1695118540/WearUp/product-image/3-4left_2nocta_x0uw04.png" alt="">
               </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <a href="javascript:void(0)" (click)="addLike(product)">
+                <div class="d-flex justify-content-between align-items-center" [class]="{
+                  'justify-content-center': userType === 'Brand',
+                  'justify-content-between': userType !== 'Brand'
+                }">
+                  <a *ngIf="userType === 'User'" href="javascript:void(0)" (click)="addLike(product)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="23" viewBox="0 0 27 23" [attr.fill]="product.isLiked ? 'red' : 'none'">
                       <path d="M18.7778 1C16.4444 1 14.3889 2.16667 13.2222 4C12.0556 2.16667 10 1 7.66667 1C4 1 1 4 1 7.66667C1 14.2778 13.2222 21 13.2222 21C13.2222 21 25.4444 14.3333 25.4444 7.66667C25.4444 4 22.4444 1 18.7778 1Z" stroke="white" stroke-width="2"/>
                     </svg>

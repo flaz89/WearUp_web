@@ -5,7 +5,9 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/favorites")
 public class Favorite_Controller {
 	
+	
 	private final Favorite_Service favSrv;
 
 	@Autowired
@@ -28,19 +31,26 @@ public class Favorite_Controller {
 	
 	@GetMapping("/{userId}")
 	@PreAuthorize("hasAuthority('USER')")
-	public List<Favorite> getAllFavorites(@PathVariable UUID userId) {
-		return favSrv.getFavoritesByUserId(userId);
+	public List<FavoriteResponse> getAllFavorites(@PathVariable UUID userId) {
+	    return favSrv.getFavoritesByUserId(userId);
 	}
 	
 	
-	@PostMapping("/add")
+	@PostMapping
     @PreAuthorize("hasAuthority('USER')")
 	@ResponseStatus(HttpStatus.CREATED)
-    public Favorite addToFav(@RequestParam UUID userId, @RequestParam long productId) {
-        return favSrv.addToFav_user(userId, productId);
+    public FavoriteResponse addToFav(@RequestParam UUID userId, @RequestParam long productId) {
+		return favSrv.addToFav_user(userId, productId);
+
     }
 	
-	//fare il metodo removeLike
+	@DeleteMapping("/{userId}")
+	@PreAuthorize("hasAuthority('USER')")
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ResponseEntity<Void> removeFavorite(@PathVariable UUID userId, @RequestParam long productId) {
+	    favSrv.removeFavorite(userId, productId);
+	    return ResponseEntity.noContent().build();
+	}
 
 			
 

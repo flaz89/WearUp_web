@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrandComponent } from './auth/register/brandRegister/brand.component';
 import { LoginAccessComponent } from './auth/login-access/login-access.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ShowProductComponent } from './components/show-product/show-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem('WU-Token');
@@ -35,6 +36,7 @@ export function tokenGetter() {
     BrandComponent,
     LoginAccessComponent,
     ProductsComponent,
+    ShowProductComponent,
   ],
   imports: [
     BrowserModule,

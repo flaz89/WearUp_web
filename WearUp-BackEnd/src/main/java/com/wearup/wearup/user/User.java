@@ -8,8 +8,9 @@ import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wearup.wearup.favorite.Favorite;
 import com.wearup.wearup.security.AuthenticatedEntity;
@@ -30,6 +31,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties({ "password", "accountNonExpired", "authorities", "credentialsNonExpired", "accountNonLocked" })
+
+
 public class User implements AuthenticatedEntity {
 	@Id
 	@GeneratedValue
@@ -50,6 +53,7 @@ public class User implements AuthenticatedEntity {
 	private String profilePicture;
 	private Date subscriptionDate;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Favorite> favorites;
 

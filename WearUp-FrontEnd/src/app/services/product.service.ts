@@ -56,8 +56,28 @@ export class ProductService {
 }
 
 //----------------------------------------------
-addToFav(){
 
-}
+  addToFav(userId: string, productId: number, token: string){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const params = {
+      userId: userId,
+      productId: productId.toString()
+    };
 
+    return this.http.post(this.baseURL + "favorites",null, { headers, params } );
+  }
+
+  removeFavorite(userId: string, productId: number, token: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const params = new HttpParams().set('productId', productId.toString());
+
+    return this.http.delete(this.baseURL + "favorites/" + userId , { headers, params } );
+  }
+
+
+  getUserFavorites(userId:string, token:string){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(this.baseURL + "favorites/" + userId, { headers})
+  }
 }

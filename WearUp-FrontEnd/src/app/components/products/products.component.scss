@@ -6,9 +6,13 @@ main{
 
   // ---------------------------- COLONNA FORM
 
-  .form-container{
+  .form-container, .modal-body{
     background-color: $primary-black;
     color: white;
+
+    .custom-input::placeholder{
+      color: white;
+    }
 
     .form-control, .form-select{
       background-color: rgba(255, 255, 255, 0.116);
@@ -45,7 +49,7 @@ main{
     }
 
     .form-check-input {
-      display: none;
+      opacity:0;
     }
 
     .form-check-label::before {
@@ -159,9 +163,10 @@ main{
         height: 250px;
         width: 180px;
         --bs-card-border-color:none;
+        transition: opacity 0.5s ease-out;
 
         &:hover{
-          opacity: 0.4;
+          opacity: 0.3;
         }
 
         &:active{

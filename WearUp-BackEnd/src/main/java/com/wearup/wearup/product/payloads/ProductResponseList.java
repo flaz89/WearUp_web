@@ -7,11 +7,13 @@ import com.wearup.wearup.product.Product_Type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductResponseList {
 	
 	private long id;

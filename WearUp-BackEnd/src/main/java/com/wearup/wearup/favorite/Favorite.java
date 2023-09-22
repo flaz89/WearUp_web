@@ -1,6 +1,5 @@
 package com.wearup.wearup.favorite;
 
-import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.product.Product;
 import com.wearup.wearup.user.User;
 
@@ -9,11 +8,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Favorite {
 	
