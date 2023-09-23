@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wearup.wearup.brand.payloads.BrandResponseList;
 import com.wearup.wearup.product.Product_Type;
+import com.wearup.wearup.product.Texture;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,8 +24,9 @@ public class ProductResponseList {
 	private BrandResponseList brand;	
 	private Product_Type type;	
 	private double price;
-	private String link3Dk;
-	private List<String> linkTexture;
+	private String link3D;
+	private Texture textures;
 	private long likeCounter;
 	private String productPicture;
+	private String productLink;
 }

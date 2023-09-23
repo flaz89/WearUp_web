@@ -2,7 +2,7 @@ package com.wearup.wearup.product;
 
 public enum Product_Type {
 	    // Tops
-	    CREW_NECK_TSHIRT("Tops"),
+	    TSHIRT("Tops"),
 	    V_NECK_TSHIRT("Tops"),
 	    POLO_SHIRT("Tops"),
 	    BUTTON_DOWN_SHIRT("Tops"),

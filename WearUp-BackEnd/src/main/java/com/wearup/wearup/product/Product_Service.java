@@ -52,10 +52,11 @@ public class Product_Service {
 	            brandResponseList,
 	            product.getType(),
 	            product.getPrice(),
-	            product.getLink3Dk(),
-	            product.getLinkTexture(),
+	            product.getLink3D(),
+	            product.getTextures(),
 	            product.getLikeCounter(),
-	            product.getProductPicture()
+	            product.getProductPicture(),
+	            product.getProductLink()
 	    );
 	}
 	
@@ -233,9 +234,10 @@ public class Product_Service {
 				currentBrand,
 				body.getType(),
 				body.getPrice(),
-				body.getLink3Dk(),
-				body.getLinkTexture(),
-				body.getProductPicture()
+				body.getLink3D(),
+				body.getTextures(),
+				body.getProductPicture(),
+				body.getProductLink()
 				);
 		
 		prodRepo.save(newProduct);
@@ -249,10 +251,11 @@ public class Product_Service {
 		return prodRepo.findByProductCode(productCode).orElseThrow(() -> new NotFoundException(productCode));
 	}
 	
-	// -------------------------------------------------------- CERCO UN PRODOTTO PER ID PRODOTTO x ADMIN
+	// -------------------------------------------------------- CERCO UN PRODOTTO PER ID PRODOTTO
 	
-	public Product findByProductId(long productId) throws NotFoundException {
-		return prodRepo.findById(productId).orElseThrow(() -> new NotFoundException(productId));
+	public ProductResponseList findByProductId(long productId) throws NotFoundException {
+		Product product = prodRepo.findById(productId).orElseThrow(() -> new NotFoundException(productId));
+		return convertToProductResponseList(product);
 	}
 	
 	// -------------------------------------------------------- CERCO e AGGIORNO UN PRODOTTO PER ID x BRAND/ADMIN
@@ -267,8 +270,9 @@ public class Product_Service {
 		foundProduct.setBrand(body.getBrand());		
 		foundProduct.setType(body.getType());
 		foundProduct.setPrice(body.getPrice());
-		foundProduct.setLink3Dk(body.getLink3Dk());
-		foundProduct.setLinkTexture(body.getLinkTexture());
+		foundProduct.setLink3D(body.getLink3D());
+		foundProduct.setProductLink(body.getProductLink());
+		foundProduct.setTextures(body.getTextures());
 		
 		if (body.getProductPicture() != null && !body.getProductPicture().isEmpty()) {
 	        foundProduct.setProductPicture(body.getProductPicture());
@@ -280,7 +284,8 @@ public class Product_Service {
 	// -------------------------------------------------------- CERCO e CANCELLO UN PRODOTTO PER ID x BRAND/ADMIN
 	
 	public void findByIdAndDelete(long productId) throws NotFoundException {
-		Product product = this.findByProductId(productId);
+		Product product = prodRepo.findById(productId)
+		        .orElseThrow(() -> new NotFoundException(productId));
 		prodRepo.delete(product);
 	}
 

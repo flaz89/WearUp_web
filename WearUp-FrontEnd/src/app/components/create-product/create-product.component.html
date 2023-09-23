@@ -1,0 +1,163 @@
+<main>
+  <div class="container-fluid">
+    <div class="container d-flex">
+      <div class="row">
+
+        <!-- Colonna immagine prodotto ----------------------------->
+        <div class="col-md-6 pb-3 pb-md-0">
+          <div class="product-image-container mt-0 ">
+
+            <h1 class=" m-t">Load your prodcut</h1>
+            <div class="">
+
+              <ng-container *ngIf="isImageLoaded; else placeholder">
+                <img [src]="imageSrc" alt="Uploaded Image" class="img-thumbnail rounded-5 img-square">
+              </ng-container>
+              <ng-template #placeholder>
+                <div class="imagePlaceholder d-flex flex-column align-items-center justify-content-center text-white rounded-5 ">
+                  <div class="mb-2 mb-md-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="">
+                      <path d="M65.2209 5.43504C65.2209 2.43334 62.7875 -3.05176e-05 59.7858 -3.05176e-05C56.7841 -3.05176e-05 54.3508 2.43334 54.3508 5.43504V54.3614H5.43507C2.43336 54.3614 0 56.7947 0 59.7964C0 62.7981 2.43336 65.2315 5.43507 65.2315H54.3508V114.147C54.3508 117.149 56.7841 119.582 59.7858 119.582C62.7875 119.582 65.2209 117.149 65.2209 114.147V65.2315H114.137C117.138 65.2315 119.572 62.7981 119.572 59.7964C119.572 56.7947 117.138 54.3614 114.137 54.3614H65.2209V5.43504Z" fill=""/>
+                    </svg>
+                  </div>
+                  <p class="m-0 px-2 text-center">Load your product image</p>
+                </div>
+              </ng-template>
+            </div>
+
+            <button *ngIf="isImageLoaded" class="position-absolute bg-white p-2 border-0 rounded-circle d-flex" style="top: 0; right: 0;" (click)="cancelImage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M29.4843 10.2007C31.6068 8.07817 31.6068 4.63687 29.4843 2.51434C27.3618 0.391816 23.9205 0.391816 21.798 2.51434L15.9978 8.31454L10.1994 2.51622C8.07691 0.393689 4.63561 0.393689 2.51308 2.51622C0.39055 4.63875 0.390551 8.08005 2.51308 10.2026L8.3114 16.0009L2.51305 21.7993C0.390524 23.9218 0.390523 27.3631 2.51305 29.4856C4.63558 31.6081 8.07688 31.6081 10.1994 29.4856L15.9978 23.6873L21.7961 29.4856C23.9186 31.6081 27.3599 31.6081 29.4824 29.4856C31.6049 27.363 31.6049 23.9217 29.4824 21.7992L23.6841 16.0009L29.4843 10.2007Z" fill="#FF0000"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Colonna form ----------------------------->
+        <div class="col-md-6">
+
+          <div class="forms-container">
+
+
+
+          <form [formGroup]="productImageForm" class=" mt-3">
+            <div class="form-group">
+              <div class="d-flex justify-content-between">
+                <label for="productImage" class="form-label">Product Image</label>
+                <span class="info-text d-flex align-items-center"> .jpg / .jpeg / .png</span>
+              </div>
+              <input type="file" class="form-control" id="productImage" formControlName="productImage" #fileInput (change)="imageUploaded($event)">
+            </div>
+          </form>
+
+          <form [formGroup]="productDetailsForm" class=" mt-2">
+
+            <div class="d-flex">
+              <div class="mb-3 col-6 pe-2">
+                <label for="productCode" class="form-label">Product Code*</label>
+                <input id="productCode" formControlName="productCode" type="text" class="form-control">
+              </div>
+
+              <div class="mb-3 col-6 ps-2">
+                <label for="productName" class="form-label">Product Name*</label>
+                <input id="productName" formControlName="productName" type="text" class="form-control">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="type" class="form-label">Category*</label>
+              <select class="form-control" id="type" formControlName="type">
+                <option value="" disabled selected>Select</option>
+                <ng-container *ngFor="let category of productCategories | keyvalue">
+                  <optgroup label="{{category.key}}">
+                    <option *ngFor="let type of category.value" [value]="type">
+                      {{type}}
+                    </option>
+                  </optgroup>
+                </ng-container>
+              </select>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea id="description" formControlName="description" class="form-control"></textarea>
+            </div>
+          </form>
+
+          <div class="d-flex my-4" style="height: 1px; border: 1px solid black;"></div>
+          <!-- 3D -->
+          <h4 class="text-center">3D assets:</h4>
+
+          <!-- form per caricare il modello 3d -->
+          <form [formGroup]="product3DForm" class="asset3D p-4 rounded-4">
+            <div class="form-group">
+              <div class="d-flex justify-content-between">
+                <label for="link3D" class="form-label text-white">3D model*</label>
+                <span class="info-text d-flex align-items-center text-white"> .fbx</span>
+              </div>
+              <input type="file" class="form-control" id="link3D" formControlName="link3D" #fileInput>
+            </div>
+          </form>
+
+          <p class="mt-4 text-center fst-italic fw-light">Texture format accepted are .jpg / .jpeg / .png *</p>
+
+          <!-- form per caricare le textures -->
+          <form [formGroup]="productTexturesForm" class="">
+
+            <div class="d-flex">
+              <div class="mb-3 col-6 pe-2">
+                <label for="albedoMap" class="form-label">Diffuse Map*</label>
+                <input type="file" class="form-control" id="albedoMap" formControlName="albedoMap" #albedoMapInput>
+              </div>
+
+              <div class="mb-3 col-6 ps-2">
+                <label for="alphaMap" class="form-label">Alpha Map</label>
+                <input type="file" class="form-control" id="alphaMap" formControlName="alphaMap" #alphaMapInput>
+              </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="mb-3 col-6 pe-2">
+                  <label for="normalMap" class="form-label">Normal Map</label>
+                  <input type="file" class="form-control" id="normalMap" formControlName="normalMap" #normalMapInput>
+                </div>
+
+                <div class="mb-3 col-6 ps-2">
+                  <label for="roughnessMap" class="form-label">Roughness Map</label>
+                  <input type="file" class="form-control" id="roughnessMap" formControlName="roughnessMap" #roughnessMapInput>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="mb-3 col-6 pe-2">
+                  <label for="metalnessMap" class="form-label">Metalness Map</label>
+                  <input type="file" class="form-control" id="metalnessMap" formControlName="metalnessMap" #metalnessMapInput (change)="imageUploaded($event)">
+                </div>
+
+                <div class="mb-3 col-6 ps-2">
+                  <label for="aoMap" class="form-label">Ambient Occlusion Map</label>
+                  <input type="file" class="form-control" id="aoMap" formControlName="aoMap" #aoMapInput (change)="imageUploaded($event)">
+              </div>
+            </div>
+
+            <div class="mb-3 col-6 pe-2">
+              <label for="heightMap" class="form-label">Height Map</label>
+              <input type="file" class="form-control" id="heightMap" formControlName="heightMap" #heightMapInput (change)="imageUploaded($event)">
+            </div>
+          </form>
+
+
+
+          <div class="d-flex justify-content-center">
+            <button class="upload-btn btn mb-5 mt-3" (click)="onSubmit()"  [disabled]="!productDetailsForm.valid || !productImageForm.valid || productTexturesForm">Upload</button>
+          </div>
+
+        </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,5 +1,5 @@
 <main class="position-relative">
-  <canvas class="bg-white position-absolute" style="width: 100%;"></canvas>
+  <!-- <canvas class="bg-white position-absolute" style="width: 100%;"></canvas> -->
   <div class="container-fluid position-relative ">
     <div class="row">
 
@@ -11,27 +11,47 @@
           <div class="row justify-content-between align-items-center">
             <div class="col-6">
               <div class="bg-white p-2 rounded-4 d-inline-block">
-                <img src="https://res.cloudinary.com/wearup/image/upload/v1695210285/WearUp/brand-images/adidas_profile-picture_jo9bvk.jpg" style="height: 50px;" alt="">
+                <img [src]="product.brand.profilePicture" style="height: 50px;" alt="">
               </div>
             </div>
             <div class="col-6">
-              <p class="text-end">Brand Name</p>
+              <p class="text-end">{{product.brand.brandName}}</p>
             </div>
           </div>
 
           <div class="mt-2 text-center flex-grow-1">
-            <p class="fw-lighter m-0">#1111111111</p>
-            <p class="fw-lighter">Category</p>
-            <h2>Nome Profjndotto passesjnv</h2>
+            <div class="row mt-2">
+              <div class="col-4">
+                <p class="fw-lighter m-0">#{{product.productCode}}</p>
+              </div>
+              <div class="col-4">
+                <p class="fw-lighter text-break">{{product.type}}</p>
+              </div>
+              <div class="col-4 d-flex justify-content-center gap-3">
+                <div class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path d="M7.62236 1.00235C8.01413 0.329782 8.98582 0.329782 9.37751 1.00235L11.6483 4.9011L16.058 5.85599C16.8187 6.02071 17.119 6.9448 16.6004 7.52521L13.5941 10.8897L14.0486 15.3785C14.127 16.1529 13.341 16.724 12.6287 16.4102L8.49998 14.5908L4.37122 16.4102C3.65897 16.724 2.87289 16.1529 2.9513 15.3785L3.40579 10.8897L0.399596 7.52521C-0.119008 6.9448 0.18125 6.02071 0.941957 5.85599L5.35159 4.9011L7.62236 1.00235Z" fill="url(#paint0_linear_180_5)"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_180_5" x1="17.0308" y1="-0.108886" x2="-0.0307258" y2="16.9526" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FFEC00"/>
+                        <stop offset="1" stop-color="#F57F23"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <p class="fw-lighter m-0"> {{product.likeCounter}}</p>
+              </div>
+            </div>
+            <h2>{{product.productName}}</h2>
             <hr class="border-3 ">
-            <p class="fw-light fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui dolor alias enim eos debitis voluptates similique quo. Error, libero ipsam quae laudantium eveniet commodi saepe maxime aut atque impedit suscipit!</p>
-            <p class="text-white m-0 fst-italic fw-bold fs-1">99,99 €</p>
+            <p class="fw-light fs-6">{{product.description}}</p>
+            <p class="text-white m-0 fst-italic fw-bold fs-1">{{product.price}} €</p>
           </div>
 
           <div class="text-center fw-lighter fst-italic d-flex flex-column">
-            <a class="text-white" href="">website</a>
-            <a class="text-white" href="mailto:">brand@info.com</a>
-            <p>telefono</p>
+            <a class="text-white" href="">{{product.brand.webSite}}</a>
+            <a class="text-white" href="mailto:">{{product.brand.email}}</a>
+            <p>{{product.brand.phoneNumber}}</p>
             <p></p>
           </div>
 
@@ -54,27 +74,36 @@
               <div class="row justify-content-between align-items-center">
                 <div class="col-6">
                   <div class="bg-white p-2 rounded-4 d-inline-block">
-                    <img src="https://res.cloudinary.com/wearup/image/upload/v1695210285/WearUp/brand-images/adidas_profile-picture_jo9bvk.jpg" style="height: 50px;" alt="">
+                    <img [src]="product.brand.profilePicture" style="height: 50px;" alt="">
                   </div>
                 </div>
                 <div class="col-6">
-                  <p class="text-end text-white">Brand Name</p>
+                  <p class="text-end">{{product.brand.brandName}}</p>
                 </div>
               </div>
 
               <div class="mt-2 text-center flex-grow-1">
-                <p class="fw-lighter m-0 text-white">#1111111111</p>
-                <p class="fw-lighter text-white">Category</p>
-                <h2 class="text-white">Nome Profjndotto passesjnv</h2>
-                <hr class="border-3 text-white">
-                <p class="fw-light fs-6 text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui dolor alias enim eos debitis voluptates similique quo. Error, libero ipsam quae laudantium eveniet commodi saepe maxime aut atque impedit suscipit!</p>
-                <p class="text-white m-0 fst-italic fw-bold fs-1">99,99 €</p>
+                <div class="row mt-2">
+                  <div class="col-4">
+                    <p class="fw-lighter m-0 text-white">#{{product.productCode}}</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="fw-lighter text-white">{{product.type}}</p>
+                  </div>
+                  <div class="col-4">
+                    <p class="fw-lighter text-white">Likes: {{product.likeCounter}}</p>
+                  </div>
+                </div>
+                <h2 class="text-white">{{product.productName}}</h2>
+                <hr class="border-3 ">
+                <p class="fw-light fs-6 text-white">{{product.description}}</p>
+                <p class="text-white m-0 fst-italic fw-bold fs-1 text-white">{{product.price}} €</p>
               </div>
 
-              <div class="text-center fw-lighter fst-italic d-flex flex-column text-white">
-                <a class="text-white" href="">website</a>
-                <a class="text-white" href="mailto:">brand@info.com</a>
-                <p>telefono</p>
+              <div class="text-center fw-lighter fst-italic d-flex flex-column">
+                <a class="text-white" href="">{{product.brand.webSite}}</a>
+                <a class="text-white" href="mailto:">{{product.brand.email}}</a>
+                <p class="text-white">{{product.brand.phoneNumber}}</p>
                 <p></p>
               </div>
 
@@ -86,7 +115,7 @@
 
       <!-- COLONNA 2 -->
       <div class="product-3d col-12 col-md-8 p-md-0 d-flex" >
-        <div class="mt-4 flex-grow-1 d-flex flex-column justify-content-between">
+        <div class="mt-4 flex-grow-1 d-flex flex-column justify-content-between position-relative">
 
           <div class="">
             <a routerLink="/products">
@@ -139,26 +168,26 @@
               </button>
           </div>
 
-        </div>
-
-        <!-- <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center h-100">
-          <div id="server-response" class="my-2">
-            <div class="loader">
-              <div class="spinner-grow" style="background-color: #6C2483;" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-              <div class="spinner-grow" style="background-color: #E94E1B;" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-              <div class="spinner-grow" style="background-color: #EF790C;" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-              <div class="spinner-grow" style="background-color: #FFED00;" role="status">
-                <span class="visually-hidden">Loading...</span>
+          <div *ngIf="isLoading" class="d-flex response-container ">
+            <div id="server-response" class="my-2">
+              <div class="loader">
+                <div class="spinner-grow" style="background-color: #6C2483;" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow" style="background-color: #E94E1B;" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow" style="background-color: #EF790C;" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow" style="background-color: #FFED00;" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
               </div>
             </div>
           </div>
-        </div> -->
+        </div>
+
 
         <!-- <div *ngIf="!isLoading" class="card-container py-3 d-flex flex-wrap justify-content-center">
 

@@ -1,0 +1,67 @@
+main{
+  height: calc(100vh - 203px);
+  background: linear-gradient(192deg, rgba(255, 242, 0, 0.50) -13.44%, rgba(245, 127, 35, 0.50) 24.97%, rgba(232, 78, 27, 0.50) 57.46%, rgba(102, 36, 131, 0.50) 100%);  padding-top: 100px;
+
+
+  .product-image-container{
+
+
+    .image-square{
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .imagePlaceholder{
+      opacity: 0.6;
+      width: 300px;
+      height: 300px;
+      border: 8px solid #ffffff;
+
+      svg{
+        width: 120px;
+        height: 120px;
+      }
+
+      path {
+        fill: white;
+      }
+    }
+  }
+
+  .forms-container{
+    height: calc(100vh - 303px);
+    overflow-y: auto;
+
+    .asset3D{
+      background: linear-gradient(192deg, rgba(255, 242, 0) -13.44%, rgba(245, 127, 35) 24.97%, rgba(232, 78, 27) 57.46%, rgba(102, 36, 131) 100%);
+    }
+
+    .upload-btn{
+      border-radius: 20px;
+      background: linear-gradient(258deg, #FFED00 -5.87%, #EF790C 30.46%, #E94E1B 66.79%, #6C2483 103.12%);
+      border: none;
+      font-weight: 700;
+      color: white;
+      padding: 8px 20px;
+      transition: transform 0.1s ease;
+      &:hover{
+        background: linear-gradient(258deg, rgba(255, 238, 0, 0.8) -5.87%, rgba(239, 122, 12, 0.8) 30.46%, rgba(233, 79, 27, 0.8) 66.79%, rgba(107, 36, 131, 0.8) 103.12%);
+      }
+      &:active {
+        transform: scale(0.95);
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.255);
+        color: white;
+      }
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  scrollbar-width: none;
+}

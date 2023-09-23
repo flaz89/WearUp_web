@@ -25,6 +25,14 @@ export class ProductService {
 
   //----------------------------------------------
 
+  gettAllCategories(token:string){
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+
+    return this.http.get(this.baseURL + 'products/categories', { headers});
+  }
+
+  //----------------------------------------------
+
   getProductsByBrand(token: string, brandName: string) {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
     let params = new HttpParams().set('brand', brandName);
@@ -67,6 +75,8 @@ export class ProductService {
     return this.http.post(this.baseURL + "favorites",null, { headers, params } );
   }
 
+ // ------------------------------------
+
   removeFavorite(userId: string, productId: number, token: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = new HttpParams().set('productId', productId.toString());
@@ -74,10 +84,19 @@ export class ProductService {
     return this.http.delete(this.baseURL + "favorites/" + userId , { headers, params } );
   }
 
+  // ------------------------------------
 
   getUserFavorites(userId:string, token:string){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.get(this.baseURL + "favorites/" + userId, { headers})
+    return this.http.get(this.baseURL + "favorites/" + userId, { headers});
+  }
+
+   // ------------------------------------
+
+  getProductById(productId:number, token:string){
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(this.baseURL + "products/" + productId, { headers});
   }
 }

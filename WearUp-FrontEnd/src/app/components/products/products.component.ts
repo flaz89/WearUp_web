@@ -78,7 +78,7 @@ export class ProductsComponent implements OnInit {
             this.favouritesLoaded = false;
         }
     );
-}
+  }
 
   addLike(product: any){
     product.isLiked = !product.isLiked;
@@ -181,13 +181,9 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  createNewProduct(){
-    //vado alla pagina per creare un nuovo prodotto
-  }
-
   showProduct(product:any){
     console.log("hai selezionato questo prodotto: ",product);
-    this.router.navigate(['/product', product.id])
+    this.router.navigate(['/product', product.id]);
   }
 
   onSubmit(token:string){

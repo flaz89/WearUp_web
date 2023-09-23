@@ -152,7 +152,8 @@
         <span *ngIf="serverMessageOk" class="text-success bg-success border border-success border-2 rounded-3 p-2" style="--bs-bg-opacity: .3;">{{ serverMessageOk }}</span>
         <span *ngIf="serverMessageError" class="text-danger bg-danger border border-danger border-2 rounded-3 p-2" style="--bs-bg-opacity: .3;">{{ serverMessageError }}</span>
       </div>
-      <button class="register-btn btn mb-5 mt-3" (click)="onSubmit()" [disabled]="!imageForm.valid || !detailsForm.valid" >Register</button>
+      <button class="register-btn btn mb-5 mt-3" (click)="onSubmit()"  [disabled]="!imageForm.valid || !detailsForm.valid">Register</button>
+
     </div>
   </div>
 </div>

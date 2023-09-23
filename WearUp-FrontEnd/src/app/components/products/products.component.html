@@ -76,7 +76,7 @@
         <!-- elenco brand -->
         <div class="brand-menu-container mt-3">
 
-          <a *ngIf="userType === 'Brand'" href="javascript:void(0)" (click)="createNewProduct()"  class="brand-link-menu create-new-product">
+          <a *ngIf="userType === 'Brand'" [routerLink]="['/create-product']"  class="brand-link-menu create-new-product">
             <div class="d-flex justify-content-between align-items-center py-1 px-2 mb-2 me-2 rounded-4 create-new-product">
               <p class="m-0 pe-2 text-white" style=" font-weight: 700;">CREATE NEW PRODUCT</p>
               <div class="image rounded-3 overflow-hidden my-1">

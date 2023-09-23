@@ -18,6 +18,23 @@ public class Cloudinary_Service implements FileUpload{
 	
 	private final Cloudinary cloudinary;
 
+
+
+	@Override
+	public String upload3DModel(MultipartFile multipartFile, String folderName)
+			throws IOException {
+		Map<String, Object> uploadOptions = new HashMap<>();
+	    uploadOptions.put("public_id", UUID.randomUUID().toString());
+	    uploadOptions.put("folder", folderName);
+	    uploadOptions.put("resource_type", "raw");
+		
+	    return cloudinary.uploader()
+	            .upload(multipartFile.getBytes(), uploadOptions)
+	            .get("url")
+	            .toString();
+	}
+	
+
 	@Override
 	public String uploadFile(MultipartFile multipartFile, String folderName) throws IOException {
 		Map<String, Object> uploadOptions = new HashMap<>();
@@ -29,6 +46,8 @@ public class Cloudinary_Service implements FileUpload{
 	            .get("url")
 	            .toString();
 	}
+	
+
 	
 	
 

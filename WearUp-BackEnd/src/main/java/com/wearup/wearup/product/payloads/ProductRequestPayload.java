@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.product.Product_Type;
+import com.wearup.wearup.product.Texture;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -36,10 +37,14 @@ public class ProductRequestPayload {
 	private double price;
 	
 	@NotNull(message = "3D link is required")
-	private String link3Dk;
+	private String link3D;
 	
-	@NotNull(message = "You must upload at least one texture image link")
-	private List<String> linkTexture;
+	@NotNull(message = "You must upload at least albedo Texture")
+	private Texture textures;
 	
+	@NotNull(message = "You must upload product image")
 	private String productPicture;
+	
+	@NotNull(message = "You must upload product web link")
+	private String productLink;
 }

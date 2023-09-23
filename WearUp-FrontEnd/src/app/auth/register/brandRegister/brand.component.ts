@@ -88,6 +88,19 @@ export class BrandComponent implements OnInit {
   //-------------- SUBMIT FORM
   onSubmit() {
     this.isLoading = true;
+    // console.log(this.detailsForm.value);
+    // console.log('brandName is valid:', this.detailsForm.get('brandName')?.valid);
+    // console.log('webSite is valid:', this.detailsForm.get('webSite')?.valid);
+    // console.log('country is valid:', this.detailsForm.get('country')?.valid);
+    // console.log('city is valid:', this.detailsForm.get('city')?.valid);
+    // console.log('address is valid:', this.detailsForm.get('address')?.valid);
+    // console.log('phoneNumber is valid:', this.detailsForm.get('phoneNumber')?.valid);
+    // console.log('vatNumber is valid:', this.detailsForm.get('vatNumber')?.valid);
+    // console.log('email is valid:', this.detailsForm.get('email')?.valid);
+    // console.log('password is valid:', this.detailsForm.get('password')?.valid);
+
+
+
 
     if (this.imageForm.valid && this.detailsForm.valid) {
       const profilePictureValue = this.imageForm.get('profilePicture')?.value;

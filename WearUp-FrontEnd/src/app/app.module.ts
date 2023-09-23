@@ -18,6 +18,7 @@ import { BrandComponent } from './auth/register/brandRegister/brand.component';
 import { LoginAccessComponent } from './auth/login-access/login-access.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShowProductComponent } from './components/show-product/show-product.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 export function tokenGetter() {
   return localStorage.getItem('WU-Token');
@@ -37,6 +38,7 @@ export function tokenGetter() {
     LoginAccessComponent,
     ProductsComponent,
     ShowProductComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,

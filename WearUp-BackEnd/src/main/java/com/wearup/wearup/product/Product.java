@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,11 +50,14 @@ public class Product {
 	@Column(nullable = false)
 	private double price;
 	@Column(nullable = false)
-	private String link3Dk;
+	private String link3D;
 	@Column(nullable = false)
-	private List<String> linkTexture;
+	@NotNull(message = "You must upload at least albedo texture")
+	private Texture textures;
 	@Column(nullable = false)
 	private String productPicture;
+	@Column(nullable = false)
+	private String productLink;
 	
 	private Date creationDate;
 	private long likeCounter;
@@ -62,17 +66,18 @@ public class Product {
 	private List<Favorite> favorites;
 	
 	
-	public Product(String productCode,String productName, String description, Brand brand, Product_Type type, double price, String link3Dk,
-			List<String> linkTexture, String productPicture) {
+	public Product(String productCode,String productName, String description, Brand brand, Product_Type type, double price, String link3D,
+			Texture textures, String productPicture, String productLink) {
 		this.productCode = productCode;
 		this.productName = productName;
 		this.description = description;
 		this.brand = brand;
 		this.type = type;
 		this.price = price;
-		this.link3Dk = link3Dk;
-		this.linkTexture = linkTexture;
+		this.link3D = link3D;
+		this.textures = textures;
 		this.productPicture = productPicture;
+		this.productLink = productLink;
 		this.creationDate = new Date();
 	}
 
