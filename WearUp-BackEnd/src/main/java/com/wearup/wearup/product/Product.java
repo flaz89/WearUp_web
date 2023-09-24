@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wearup.wearup.brand.Brand;
 import com.wearup.wearup.favorite.Favorite;
 
@@ -40,6 +41,7 @@ public class Product {
 	
 	@ManyToOne
     @JoinColumn(name = "brand_id",nullable = false)
+	@JsonIgnore
 	private Brand brand;
 	
 	@Column(nullable = false)

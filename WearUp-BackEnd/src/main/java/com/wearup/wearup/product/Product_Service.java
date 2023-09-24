@@ -69,6 +69,7 @@ public class Product_Service {
 	            brand.getPhoneNumber(),
 	            brand.getEmail(),
 	            brand.getProfilePicture(),
+	            brand.getBrandLogo(),
 	            brand.getWebSite()
 	    );
 	}

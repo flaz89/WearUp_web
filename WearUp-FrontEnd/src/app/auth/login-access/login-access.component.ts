@@ -95,7 +95,10 @@ export class LoginAccessComponent implements OnInit {
       } catch (error:any) {
         this.serverMessageError = error.error.message;
         console.error("Errore durante il login:", error);
-         // Gestione dell'errore
+
+        setTimeout(() => {
+          this.serverMessageError = '';
+        }, 2500);
       } finally {
         this.isLoading = false;
       }

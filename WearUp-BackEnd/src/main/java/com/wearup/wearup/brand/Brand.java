@@ -49,6 +49,7 @@ public class Brand implements AuthenticatedEntity{
 	private String email;
 	private String password;
 	private String profilePicture;
+	private String brandLogo;
 	private String webSite;
 	
 	@Enumerated(EnumType.STRING)
@@ -61,7 +62,7 @@ public class Brand implements AuthenticatedEntity{
 	
 	
 	public Brand(String brandName, String address, String city,String country, String phoneNumber, String vATnumber, String email,
-			String password, String profilePicture, String webSite) {
+			String password, String profilePicture, String webSite, String brandLogo) {
 		this.brandName = brandName;
 		this.address = address;
 		this.city = city;
@@ -73,6 +74,7 @@ public class Brand implements AuthenticatedEntity{
 		this.role = User_Role.BRAND;
 		this.profilePicture = (profilePicture != null) ? profilePicture : "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png";
 		this.webSite = webSite;
+		this.brandLogo = brandLogo;
 		this.subscriptionDate = new Date();
 	}
 	

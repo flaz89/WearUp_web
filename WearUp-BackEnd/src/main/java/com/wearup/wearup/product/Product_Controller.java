@@ -194,5 +194,82 @@ public class Product_Controller {
 	    }
 	}
 	
+	// -------------------------------------------- UPLOAD PRODUCT IMAGE x [BRAND]
 	
+	@PreAuthorize("hasAuthority('BRAND')")
+	@PostMapping("/upload-product-image")
+	public ResponseEntity<Map<String, Object>> uploadProductImage(@RequestParam(value = "file", required = false) MultipartFile file) {
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	    	
+	    	if (file == null) {
+	            response.put("url", "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png");
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        }
+	    	
+	        String originalFilename = file.getOriginalFilename();
+	        String fileExtension = "";
+	        
+	        if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+	            fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+	        }
+	        
+	        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+	        
+	        if (!allowedExtensions.contains(fileExtension)) {
+	            response.put("error", "Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+	            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	        }
+	        
+	        String folderName = "WearUp/product-image";
+	        String url = cloudSrv.uploadFile(file, folderName);
+	        response.put("url", url);
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	        
+	    } catch (IOException e) {
+	        response.put("error", "Failed to upload file: " + e.getMessage());
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	    }
+	}
+	
+	// -------------------------------------------- UPLOAD PRODUCT TEXTURE x [BRAND]
+	
+	@PreAuthorize("hasAuthority('BRAND')")
+	@PostMapping("/upload-product-texture")
+	public ResponseEntity<Map<String, Object>> uploadProductTexture(
+			@RequestParam(value = "file", required = false) MultipartFile file, 
+			@RequestParam(value = "textureType", required = true) String textureType ) {
+		
+	    Map<String, Object> response = new HashMap<>();
+	    try {
+	    	
+	    	if (file == null) {
+	            response.put("url", "https://res.cloudinary.com/wearup/image/upload/v1693993428/WearUp/images/WearUp_Logo_Color_profile-picture_hvac5z.png");
+	            return new ResponseEntity<>(response, HttpStatus.OK);
+	        }
+	    	
+	        String originalFilename = file.getOriginalFilename();
+	        String fileExtension = "";
+	        
+	        if (originalFilename != null && originalFilename.lastIndexOf(".") > 0) {
+	            fileExtension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+	        }
+	        
+	        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png");
+	        
+	        if (!allowedExtensions.contains(fileExtension)) {
+	            response.put("error", "Invalid file extension. Allowed extensions are .jpg, .jpeg, .png");
+	            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	        }
+	        
+	        String folderName = "WearUp/product-texture";
+	        String url = cloudSrv.uploadCustomFile(file, folderName, textureType);
+	        response.put("url", url);
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+	        
+	    } catch (IOException e) {
+	        response.put("error", "Failed to upload file: " + e.getMessage());
+	        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	    }
+	}
 }

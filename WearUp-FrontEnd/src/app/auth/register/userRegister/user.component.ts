@@ -23,6 +23,7 @@ export class UserComponent implements OnInit {
 
   imageForm!: FormGroup;
   detailsForm!: FormGroup;
+  selectedUserImage: File | null = null;
 
   isLoading:boolean = false;
   serverMessageOk!:string;
@@ -46,15 +47,18 @@ export class UserComponent implements OnInit {
 
   imageUploaded(event: any) {
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.imageSrc = reader.result as string;
-      this.isImageLoaded = true;
-    };
+    if (file) {
+      this.selectedUserImage = file;
+      console.log(file);
 
-    this.imageForm.get('profilePicture')?.setValue(file)
-    console.log(this.imageForm.valid);
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.isImageLoaded = true;
+      };
+    }
   }
 
   cancelImage() {
@@ -69,10 +73,11 @@ export class UserComponent implements OnInit {
   onSubmit() {
     this.isLoading = true;
     if (this.imageForm.valid && this.detailsForm.valid) {
-      const profilePictureValue = this.imageForm.get('profilePicture')?.value;
-      if (profilePictureValue) {
+      if (this.selectedUserImage) {
         const formDataImage = new FormData();
-        formDataImage.append('file', profilePictureValue);
+        formDataImage.append('file', this.selectedUserImage);
+        console.log(formDataImage);
+
 
         this.authSrv.uploadUserImage(formDataImage).subscribe((response: any) => {
           // Ottieni l'URL dell'immagine caricata dal server

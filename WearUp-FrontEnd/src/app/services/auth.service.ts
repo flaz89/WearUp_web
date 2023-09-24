@@ -42,6 +42,8 @@ export class AuthService {
     }
 
     uploadBrandImage(formDataImage:FormData) {
+      console.log(formDataImage);
+
       return this.http.post(this.baseURL + "auth/upload-brand-image", formDataImage);
     }
 

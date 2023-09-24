@@ -281,15 +281,15 @@
         <div *ngIf="!isLoading" class="card-container py-3 d-flex flex-wrap justify-content-center">
 
           <a href="javascript:void(0)" (click)="showProduct(product)"  *ngFor="let product of productsList" class="card-link position-relative d-flex justify-content-center align-items-center">
-            <div class="card rounded-5 px-3 d-flex flex-column justify-content-center" (mouseover)="product.showTextProduct=true" (mouseout)="product.showTextProduct=false">
+            <div class="card rounded-5 px-3 py-2 d-flex flex-column justify-content-center" (mouseover)="product.showTextProduct=true" (mouseout)="product.showTextProduct=false">
               <div class="d-flex justify-content-between align-items-center">
-                <h4 class="text-white m-0 fs-5">{{product.brand.brandName}}</h4>
+                <h4 class="text-white m-0 fs-5 ellipsis">{{product.brand.brandName}}</h4>
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="18" viewBox="0 0 50 18" fill="none">
                 <path d="M5.51537 17.8125C4.02558 17.7533 2.8067 17.3456 1.85365 16.5885C1.67176 16.4439 1.23834 16.0102 1.09293 15.8273C0.706453 15.3413 0.443698 14.8683 0.268443 14.3436C-0.270842 12.7283 0.0067091 10.6087 1.06232 8.28238C1.96614 6.2908 3.36079 4.31555 5.79395 1.57984C6.15236 1.17729 7.21971 0 7.2266 0C7.22915 0 7.17098 0.100765 7.09777 0.22347C6.46512 1.28316 5.92379 2.53137 5.62889 3.61198C5.15517 5.34591 5.21231 6.83392 5.79624 7.98774C6.19905 8.78264 6.88961 9.47116 7.66614 9.85177C9.02557 10.5178 11.0159 10.5729 13.4465 10.013C13.6138 9.97422 21.9062 7.77294 31.874 5.12116C41.8419 2.46912 49.9987 0.30102 50 0.302805C50.0028 0.305105 26.8419 10.2158 14.8187 15.3574C12.9146 16.1714 12.4054 16.377 11.5103 16.6913C9.222 17.4949 7.17226 17.8783 5.51537 17.8125Z" fill="white"/>
                 </svg>
               </div>
-              <div class="d-flex justify-content-center">
-                  <img src="https://res.cloudinary.com/wearup/image/upload/v1695118540/WearUp/product-image/3-4left_2nocta_x0uw04.png" alt="">
+              <div class="d-flex justify-content-center h-100 overflow-hidden pt-3">
+                  <img [src]="product.productPicture" style="object-fit: cover;" alt="">
               </div>
                 <div class="d-flex justify-content-between align-items-center" [class]="{
                   'justify-content-center': userType === 'Brand',

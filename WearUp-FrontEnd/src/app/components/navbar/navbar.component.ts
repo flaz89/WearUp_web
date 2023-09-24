@@ -73,10 +73,7 @@ export class NavbarComponent implements OnInit {
           }
 
           try {
-            console.log("faccio chiamata get");
             console.log(decodedToken);
-
-
             const response: any = await this.http.get(apiEndpoint, { headers }).toPromise();
             console.log("Response:", response);
             this.authService.updateProfilePicture(response.profilePicture);

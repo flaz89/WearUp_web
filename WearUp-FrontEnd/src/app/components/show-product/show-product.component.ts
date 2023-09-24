@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -16,7 +16,7 @@ export class ShowProductComponent implements OnInit {
 
   isLoading:boolean = false;
 
-  constructor(private productSrv:ProductService,private route: ActivatedRoute, private authService:AuthService) { }
+  constructor(private productSrv:ProductService,private route: ActivatedRoute, private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
 
@@ -44,6 +44,8 @@ export class ShowProductComponent implements OnInit {
     )
   }
 
+  // -------------------------------------------
+
   getProduct(productId: number, token: string) {
     this.productSrv.getProductById(productId, token).subscribe(
       (product: any) => {
@@ -58,6 +60,14 @@ export class ShowProductComponent implements OnInit {
         // Gestisci l'errore come meglio credi, ad esempio mostrando un messaggio all'utente.
       }
     );
+  }
+
+  // -------------------------------------------
+
+  navigateToProductSite(){
+    if (this.product?.productLink) {
+      window.open(this.product.productLink, '_blank');
+    }
   }
 
 }

@@ -44,7 +44,8 @@ public class Brand_Service {
 				body.getEmail(),
 				body.getPassword(),
 				body.getProfilePicture(),
-				body.getWebSite()
+				body.getWebSite(),
+				body.getBrandLogo()
 				);
 
 		return brandRepo.save(newBrand);
@@ -78,6 +79,7 @@ public class Brand_Service {
 		found.setEmail(body.getEmail());
 		found.setPassword(bcrypt.encode(body.getPassword()));
 		found.setWebSite(body.getWebSite());
+		found.setBrandLogo(body.getBrandLogo());
 		if (body.getProfilePicture() != null && !body.getProfilePicture().isEmpty()) {
 	        found.setProfilePicture(body.getProfilePicture());
 	    }

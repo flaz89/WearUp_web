@@ -11,21 +11,21 @@
           <div class="row justify-content-between align-items-center">
             <div class="col-6">
               <div class="bg-white p-2 rounded-4 d-inline-block">
-                <img [src]="product.brand.profilePicture" style="height: 50px;" alt="">
+                <img [src]="product?.brand?.profilePicture" style="height: 50px;" alt="">
               </div>
             </div>
             <div class="col-6">
-              <p class="text-end">{{product.brand.brandName}}</p>
+              <p class="text-end">{{product?.brand?.brandName}}</p>
             </div>
           </div>
 
           <div class="mt-2 text-center flex-grow-1">
             <div class="row mt-2">
               <div class="col-4">
-                <p class="fw-lighter m-0">#{{product.productCode}}</p>
+                <p class="fw-lighter m-0">#{{product?.productCode}}</p>
               </div>
               <div class="col-4">
-                <p class="fw-lighter text-break">{{product.type}}</p>
+                <p class="fw-lighter text-break">{{product?.type}}</p>
               </div>
               <div class="col-4 d-flex justify-content-center gap-3">
                 <div class="">
@@ -39,19 +39,19 @@
                     </defs>
                   </svg>
                 </div>
-                <p class="fw-lighter m-0"> {{product.likeCounter}}</p>
+                <p class="fw-lighter m-0"> {{product?.likeCounter}}</p>
               </div>
             </div>
-            <h2>{{product.productName}}</h2>
+            <h2>{{product?.productName}}</h2>
             <hr class="border-3 ">
-            <p class="fw-light fs-6">{{product.description}}</p>
-            <p class="text-white m-0 fst-italic fw-bold fs-1">{{product.price}} €</p>
+            <p class="fw-light fs-6">{{product?.description}}</p>
+            <p class="text-white m-0 fst-italic fw-bold fs-1">{{product?.price}} €</p>
           </div>
 
           <div class="text-center fw-lighter fst-italic d-flex flex-column">
-            <a class="text-white" href="">{{product.brand.webSite}}</a>
-            <a class="text-white" href="mailto:">{{product.brand.email}}</a>
-            <p>{{product.brand.phoneNumber}}</p>
+            <a class="text-white" href="">{{product?.brand?.webSite}}</a>
+            <a class="text-white" href="mailto:">{{product?.brand?.email}}</a>
+            <p>{{product?.brand?.phoneNumber}}</p>
             <p></p>
           </div>
 
@@ -74,36 +74,36 @@
               <div class="row justify-content-between align-items-center">
                 <div class="col-6">
                   <div class="bg-white p-2 rounded-4 d-inline-block">
-                    <img [src]="product.brand.profilePicture" style="height: 50px;" alt="">
+                    <img [src]="product?.brand?.profilePicture" style="height: 50px;" alt="">
                   </div>
                 </div>
                 <div class="col-6">
-                  <p class="text-end">{{product.brand.brandName}}</p>
+                  <p class="text-end">{{product?.brand?.brandName}}</p>
                 </div>
               </div>
 
               <div class="mt-2 text-center flex-grow-1">
                 <div class="row mt-2">
                   <div class="col-4">
-                    <p class="fw-lighter m-0 text-white">#{{product.productCode}}</p>
+                    <p class="fw-lighter m-0 text-white">#{{product?.productCode}}</p>
                   </div>
                   <div class="col-4">
-                    <p class="fw-lighter text-white">{{product.type}}</p>
+                    <p class="fw-lighter text-white">{{product?.type}}</p>
                   </div>
                   <div class="col-4">
-                    <p class="fw-lighter text-white">Likes: {{product.likeCounter}}</p>
+                    <p class="fw-lighter text-white">Likes: {{product?.likeCounter}}</p>
                   </div>
                 </div>
-                <h2 class="text-white">{{product.productName}}</h2>
+                <h2 class="text-white">{{product?.productName}}</h2>
                 <hr class="border-3 ">
-                <p class="fw-light fs-6 text-white">{{product.description}}</p>
-                <p class="text-white m-0 fst-italic fw-bold fs-1 text-white">{{product.price}} €</p>
+                <p class="fw-light fs-6 text-white">{{product?.description}}</p>
+                <p class="text-white m-0 fst-italic fw-bold fs-1 text-white">{{product?.price}} €</p>
               </div>
 
               <div class="text-center fw-lighter fst-italic d-flex flex-column">
-                <a class="text-white" href="">{{product.brand.webSite}}</a>
-                <a class="text-white" href="mailto:">{{product.brand.email}}</a>
-                <p class="text-white">{{product.brand.phoneNumber}}</p>
+                <a class="text-white" href="">{{product?.brand?.webSite}}</a>
+                <a class="text-white" href="mailto:">{{product?.brand?.email}}</a>
+                <p class="text-white">{{product?.brand?.phoneNumber}}</p>
                 <p></p>
               </div>
 
@@ -138,7 +138,7 @@
                 </svg>
               </button>
 
-              <button class="d-block my-2">
+              <button class="d-block my-2" (click)="navigateToProductSite()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="36" viewBox="0 0 35 36" fill="none">
                   <path d="M10.2495 16.0516C12.5733 13.7277 16.6262 13.7277 18.9501 16.0516L20.4002 17.5017L23.3004 14.6015L21.8503 13.1514C19.9162 11.2152 17.34 10.1466 14.5998 10.1466C11.8596 10.1466 9.28341 11.2152 7.34925 13.1514L2.99688 17.5017C1.07768 19.4271 0 22.0347 0 24.7533C0 27.4718 1.07768 30.0794 2.99688 32.0048C3.94831 32.9576 5.07865 33.713 6.32293 34.2276C7.56721 34.7422 8.90092 35.0059 10.2474 35.0035C11.5943 35.0063 12.9284 34.7428 14.1731 34.2282C15.4177 33.7136 16.5484 32.958 17.5 32.0048L18.9501 30.5547L16.0499 27.6545L14.5998 29.1046C13.4439 30.2553 11.8794 30.9013 10.2484 30.9013C8.61749 30.9013 7.05293 30.2553 5.89709 29.1046C4.74542 27.9493 4.09873 26.3845 4.09873 24.7533C4.09873 23.122 4.74542 21.5572 5.89709 20.4019L10.2495 16.0516Z" fill="url(#paint0_linear_175_9)"/>
                   <path d="M17.5 2.99857L16.0499 4.44868L18.9501 7.34889L20.4002 5.89878C21.5561 4.74811 23.1206 4.1021 24.7516 4.1021C26.3825 4.1021 27.9471 4.74811 29.1029 5.89878C30.2546 7.05409 30.9013 8.61885 30.9013 10.2501C30.9013 11.8814 30.2546 13.4462 29.1029 14.6015L24.7505 18.9518C22.4267 21.2757 18.3738 21.2757 16.0499 18.9518L14.5998 17.5017L11.6996 20.4019L13.1497 21.852C15.0838 23.7882 17.66 24.8568 20.4002 24.8568C23.1404 24.8568 25.7166 23.7882 27.6508 21.852L32.0031 17.5017C33.9223 15.5763 35 12.9687 35 10.2501C35 7.5316 33.9223 4.92394 32.0031 2.99857C30.0783 1.07837 27.4704 0 24.7516 0C22.0327 0 19.4248 1.07837 17.5 2.99857Z" fill="url(#paint1_linear_175_9)"/>

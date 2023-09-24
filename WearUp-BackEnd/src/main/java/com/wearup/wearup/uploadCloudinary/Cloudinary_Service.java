@@ -46,6 +46,24 @@ public class Cloudinary_Service implements FileUpload{
 	            .get("url")
 	            .toString();
 	}
+
+
+	@Override
+	public String uploadCustomFile(MultipartFile multipartFile, String folderName, String textureType)
+			throws IOException {
+		Map<String, Object> uploadOptions = new HashMap<>();
+		String publicId = textureType + "-" + UUID.randomUUID().toString();
+	    uploadOptions.put("public_id", publicId);
+	    uploadOptions.put("folder", folderName);
+	    
+	    return cloudinary.uploader()
+	            .upload(multipartFile.getBytes(), uploadOptions)
+	            .get("url")
+	            .toString();
+	}
+
+
+	
 	
 
 	

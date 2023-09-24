@@ -172,6 +172,7 @@ main{
         &:active{
           transform: scale(0.95);
         }
+
       }
 
       .text-product{
@@ -182,6 +183,14 @@ main{
       }
 
     }
+  }
+
+  .ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90px; /* Sostituisci con la larghezza desiderata */
+    display: block; /* o inline-block */
   }
 
 }

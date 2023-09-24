@@ -6,17 +6,10 @@ main{
   .product-image-container{
 
 
-    .image-square{
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      object-position: center;
-    }
-
     .imagePlaceholder{
       opacity: 0.6;
-      width: 300px;
-      height: 300px;
+      width: 400px;
+      height: 400px;
       border: 8px solid #ffffff;
 
       svg{
@@ -28,11 +21,25 @@ main{
         fill: white;
       }
     }
+
+    .image-container{
+      height: 400px;
+      width: 400px;
+      overflow: hidden;
+
+
+      .image-container img{
+        object-fit:contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
   }
 
   .forms-container{
     height: calc(100vh - 303px);
     overflow-y: auto;
+    scrollbar-width: none;
 
     .asset3D{
       background: linear-gradient(192deg, rgba(255, 242, 0) -13.44%, rgba(245, 127, 35) 24.97%, rgba(232, 78, 27) 57.46%, rgba(102, 36, 131) 100%);
@@ -63,5 +70,60 @@ main{
     display: none;
   }
 
-  scrollbar-width: none;
+}
+
+@media (max-width: 991px) {
+  main{
+    height: 100%;
+    .product-image-container{
+      .imagePlaceholder{
+        width: 300px;
+        height: 300px;
+      }
+
+      .image-container{
+        height: 300px;
+        width: 300px;
+      }
+
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  main{
+    height: 100%;
+
+    .forms-container{
+      height: 100%;
+    }
+
+    .product-image-container{
+
+      .imagePlaceholder{
+        width: 200px;
+        height: 200px;
+
+
+        svg{
+          width: 90px;
+          height: 90px;
+        }
+      }
+
+      .image-container{
+        height: 200px;
+        width: 200px;
+        overflow: hidden;
+
+
+        .image-container img{
+          object-fit:contain;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+  }
 }

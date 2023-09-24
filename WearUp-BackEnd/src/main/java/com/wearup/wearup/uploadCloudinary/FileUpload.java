@@ -8,6 +8,8 @@ public interface FileUpload {
 	String uploadFile(MultipartFile multipartFile, String folderName) throws IOException;
 
 	String upload3DModel(MultipartFile multipartFile, String folderName) throws IOException;
+	
+	String uploadCustomFile(MultipartFile multipartFile, String folderName, String textureType) throws IOException;
 
 
 }

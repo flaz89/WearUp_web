@@ -32,15 +32,28 @@
 
     <div class="col-md-6">
       <!-- Form per l'immagine -->
-      <form [formGroup]="imageForm" class="mb-4">
-        <div class="form-group">
-          <div class="d-flex justify-content-between">
-            <label for="profilePicture" class="form-label">Brand Picture</label>
-            <span class="info-text d-flex align-items-center"> .jpg / .jpeg / .png</span>
+      <div class="d-flex gap-3">
+        <form [formGroup]="imageForm" class="mb-4">
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="profilePicture" class="form-label">Brand img</label>
+              <span class="info-text d-flex align-items-center"> .jpg / .jpeg / .png</span>
+            </div>
+            <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" #fileInput1 (change)="imageUploaded($event)">
           </div>
-          <input type="file" class="form-control" id="profilePicture" formControlName="profilePicture" #fileInput (change)="imageUploaded($event)">
-        </div>
-      </form>
+        </form>
+
+        <form [formGroup]="logoForm" class="mb-4">
+          <div class="form-group">
+            <div class="d-flex justify-content-between">
+              <label for="brandLogo" class="form-label">Logo img</label>
+              <span class="info-text d-flex align-items-center"> .jpg / .jpeg / .png (h.18px)</span>
+            </div>
+            <input type="file" class="form-control" id="brandLogo" formControlName="brandLogo" #fileInput2 (change)="logoUploaded($event)">
+          </div>
+        </form>
+      </div>
+
       <!-- Form per i dettagli -->
       <form [formGroup]="detailsForm">
 

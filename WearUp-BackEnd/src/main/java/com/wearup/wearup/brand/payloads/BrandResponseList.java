@@ -16,6 +16,7 @@ public class BrandResponseList {
 	private String phoneNumber;
 	private String email;
 	private String profilePicture;
-	private String  webSite;
+	private String brandLogo;
+	private String webSite;
 
 }
