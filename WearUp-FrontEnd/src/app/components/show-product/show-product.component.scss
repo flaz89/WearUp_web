@@ -4,6 +4,7 @@ main{
   height: calc(100vh - 203px);
   background: linear-gradient(192deg, rgba(255, 242, 0, 0.50) -13.44%, rgba(245, 127, 35, 0.50) 24.97%, rgba(232, 78, 27, 0.50) 57.46%, rgba(102, 36, 131, 0.50) 100%);  padding-top: 100px;
 
+
   // ---------------------------- COLONNA INFO
 
   .colonna-info{
@@ -23,22 +24,31 @@ main{
 
   }
 
-  // ---------------------------- COLONNA CONTROLLI
+  // ---------------------------- COLONNA 3D
 
   .product-3d {
-    height: calc(100vh - 303px);
 
-    button {
-      width: 60px;
-      height: 60px;
-      border-radius: 20px;
-      border: none;
-      background-color: hsla(0, 0%, 16%);
-      box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+    .canvasContainer{
+      height: calc(100vh - 303px);
+    }
 
-      &:active{
-        transform: scale(0.95);
-        box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.372);
+
+
+    .btn-group{
+
+
+      button {
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        border: none;
+        background-color: hsla(0, 0%, 16%);
+        box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.2);
+
+        &:active{
+          transform: scale(0.95);
+          box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.372);
+        }
       }
     }
 
@@ -53,4 +63,6 @@ main{
 
 
 }
+
+
 

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
+
+
 
 @Component({
   selector: 'app-show-product',
@@ -14,14 +16,15 @@ export class ShowProductComponent implements OnInit {
   productId!: number;
   product!:any;
 
+  model3DLink!:string;
+
   isLoading:boolean = false;
 
-  constructor(private productSrv:ProductService,private route: ActivatedRoute, private authService:AuthService, private router:Router) { }
+  constructor(private productSrv:ProductService,private route: ActivatedRoute, private authService:AuthService,private ngZone: NgZone) { }
 
   ngOnInit(): void {
 
     this.getProductId();
-    console.log(this.productId);
     this.getProduct(this.productId, this.token)
 
 
@@ -57,7 +60,6 @@ export class ShowProductComponent implements OnInit {
       },
       (error) => {
         console.error('Errore nel ricevere il prodotto:', error);
-        // Gestisci l'errore come meglio credi, ad esempio mostrando un messaggio all'utente.
       }
     );
   }
@@ -69,5 +71,8 @@ export class ShowProductComponent implements OnInit {
       window.open(this.product.productLink, '_blank');
     }
   }
+
+  // ------------------------------------------- THREE.JS
+
 
 }
