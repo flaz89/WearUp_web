@@ -142,11 +142,10 @@ export class ProductsComponent implements OnInit {
           });
           this.brands = uniqueBrandsArray;
 
-          console.log("Brands :",this.brands);
+          //console.log("Brands :",this.brands);
 
           // array categorie
           this.types = Array.from(new Set(this.productsList.map(product => product.type)));
-          console.log(this.types);
 
           //
           this.paginationInfo = {

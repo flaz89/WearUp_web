@@ -176,22 +176,26 @@ export class CreateProductComponent implements OnInit {
 
         // Itero sulle risposte
         responses.forEach((response:any) => {
-          //console.log('Response:', response);
+          // controlla se response.url è definito prima di accedere a includes
           const url = response.url;
-          if (url.includes('product-image')) {
-            productImage = url;
-          } else if (url.includes('product-model')) {
-            link3D = url;
-          } else if (url.includes('product-texture')) {
-            //console.log('Texture URL detected:', url);
-            textureFields.forEach((field) => {
-              if (url.includes(field)) {
-                //console.log(`Assigning URL to texture ${field}:`, url);
-                textures[field] = url;
-              }
-            });
+          if (url) {
+            if (url.includes('product-image')) {
+              productImage = url;
+            } else if (url.includes('product-model')) {
+              link3D = url;
+            } else if (url.includes('product-texture')) {
+              textureFields.forEach((field) => {
+                if (url.includes(field)) {
+                  textures[field] = url;
+                }
+              });
+            }
+          } else {
+            // logga o gestisci l'errore se url è undefined
+            console.error('URL is undefined for response:', response);
           }
         });
+
 
         // Costruisco l'oggetto finale
         const finalObject:Product = {

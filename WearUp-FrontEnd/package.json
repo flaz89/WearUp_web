@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "rxjs": "~7.5.0",
+    "three": "^0.156.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -32,6 +33,7 @@
     "@angular/cli": "~14.2.11",
     "@angular/compiler-cli": "^14.2.0",
     "@types/jasmine": "~4.0.0",
+    "@types/three": "^0.156.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

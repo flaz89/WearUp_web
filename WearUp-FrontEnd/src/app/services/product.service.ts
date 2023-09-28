@@ -67,6 +67,13 @@ export class ProductService {
 
 //----------------------------------------------
 
+getTopProducts(){
+
+  return this.http.get(this.baseURL + 'products/home');
+}
+
+//----------------------------------------------
+
   addToFav(userId: string, productId: number, token: string){
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const params = {
@@ -139,7 +146,7 @@ export class ProductService {
   uploadProductTexture(texture: FormData, token: string, textureType: string): Observable<string> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    // Aggiungi textureType al FormData
+    // Aggiungo textureType al FormData
     texture.append('textureType', textureType);
 
     return this.http.post<string>(this.baseURL + "products/upload-product-texture", texture, {headers}).pipe(

@@ -163,10 +163,11 @@ main{
         height: 250px;
         width: 180px;
         --bs-card-border-color:none;
-        transition: opacity 0.5s ease-out;
+        transition: opacity 0.5s ease-out, background-color 0.5s ease-out;
 
         &:hover{
           opacity: 0.3;
+          background-color: #282828;
         }
 
         &:active{

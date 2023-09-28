@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-try-it',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TryItComponent implements OnInit {
 
-  constructor() { }
+  products!:any[];
+  selectedProduct!:any;
+
+  showText:boolean = true;
+
+  constructor(private productSrv: ProductService) { }
 
   ngOnInit(): void {
+    this.productSrv.getTopProducts().subscribe(
+      (products:any) => {
+        this.products = products;
+        console.log(products);
+
+      },
+      (error) => {
+        console.error('Errore nel recupero dei prodotti', error);
+      }
+    )
+  }
+
+  open3d(product:any){
+    this.showText = false;
+    this.selectedProduct = product;
   }
 
 }
