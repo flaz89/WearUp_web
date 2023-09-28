@@ -47,8 +47,7 @@ export class Canvas3DComponent implements AfterViewInit {
 
     //* SCENE
     this.scene = new THREE.Scene();
-    const axis = new THREE.AxesHelper(1);
-    this.scene.add(axis);
+
 
     // LOAD MESH
     if (this.loadedModel3DLink) {
@@ -79,9 +78,9 @@ export class Canvas3DComponent implements AfterViewInit {
     camera.position.set(0,0.6,3)
 
     //* LIGHT
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    const ambientlight = new THREE.AmbientLight(0xffffff, 3)
-    directionalLight.position.set(0,2,4)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
+    const ambientlight = new THREE.AmbientLight(0xffffff, 2)
+    directionalLight.position.set(0,5,4)
     this.scene.add(directionalLight, ambientlight);
 
 
@@ -165,14 +164,6 @@ loadModel():void{
          const metalnessMap = this.loadedMetalnessMap ? new THREE.TextureLoader().load(this.loadedMetalnessMap) : undefined;
          const normalMap = this.loadedNormalMap ? new THREE.TextureLoader().load(this.loadedNormalMap) : undefined;
          const roughnessMap = this.loadedRoughnessMap ? new THREE.TextureLoader().load(this.loadedRoughnessMap) : undefined;
-
-         //--------------------------------------------controllo texture
-         if(albedoMap) {
-          albedoMap.offset.set(0.22,0.35);
-          albedoMap.repeat.set(0.00085,0.00085)
-         }
-
-
 
           const material = new THREE.MeshStandardMaterial({
             map: albedoMap,

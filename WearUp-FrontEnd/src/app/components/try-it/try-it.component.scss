@@ -1,0 +1,44 @@
+main{
+  height: calc(100vh - 203px);
+  background: linear-gradient(192deg, rgba(255, 242, 0, 0.50) -13.44%, rgba(245, 127, 35, 0.50) 24.97%, rgba(232, 78, 27, 0.50) 57.46%, rgba(102, 36, 131, 0.50) 100%);  padding-top: 100px;
+
+  .container-fluid {
+    height: 100%;
+
+    .brand-column{
+      padding: 7em 0;
+
+      .brand-box{
+        border: none;
+        background-color: white;
+        height: 110px;
+        border-radius: 20px;
+        overflow: hidden;
+
+        img{
+          height: 100%;
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 767px){
+
+  .col-12.col-md-2.order-2.order-md-1 {
+    flex-direction: row;
+    position: absolute;
+    bottom: 0 + 203px;
+    gap: 10px;
+    width: 100%;
+  }
+
+
+  .brand-box{
+    z-index: 1;
+    flex-direction: row;
+    margin-bottom: 1em;
+    padding: 5px;
+  }
+}
