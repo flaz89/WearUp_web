@@ -43,7 +43,7 @@ The Front-end was developed using the following technologies:
 - Register as a "User" or a "Brand"
 - USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
-- product ////////////////
+- Page "products" allows user to interact with all products catalog and 3D viewer (only with registration)
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Back-end
 The Front-end was developed using the following technologies:
@@ -55,15 +55,13 @@ The Front-end was developed using the following technologies:
 - PosgreSQL <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_postgresql_e5uxqz.png" height="20"> 
 - Cloudinary <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_cloudinary_hyak0g.png" height="20">
 - JWT <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_jwt_vjmamg.png" height="20">
+- Bcrypt <img src="https://bcrypt.online/images/bcrypt-esse-tools-logo-square.svg" height="20">
 
 ### Functionality
 
-- Landing on the "Home" page
-- Discover 3D by accessing the "Try it" page without registration, where you can see the potential of WearUp by playing with the 4 most liked products
-- Register as a "User" or a "Brand"
-- USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
-- BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
-
+- PostgreSQL used as database application, all the database data access are stored in a private file so if you want to use it you have to link your database data on file "env.properties"
+- All digital assets managed using Cloudinary as a cloud storage
+- JWT used to generate token for each user access
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Assets
 
 ### 💻 Technologies
