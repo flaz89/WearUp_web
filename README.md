@@ -27,12 +27,11 @@ The Front-end was developed using the following technologies:
 
 ### Technologies
 
-   <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png" height="20"> Angular CLI: 14.2.12   
-   <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menode.png" height="20"> Node: 18.15.0  
-   <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menpm.png" height="20"> Package Manager: npm 9.5.0
-- Package Manager: npm 9.5.0 
-- Bootstrap 5
-- Three.JS
+- Angular CLI: 14.2.12 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png" height="20">
+- Node: 18.15.0 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menode.png" height="20">
+- Package Manager: npm 9.5.0 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menpm.png" height="20"> 
+- Bootstrap 5 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-mebootstrap.png" height="20">
+- Three.JS <img src="WearUp-FrontEnd/src/assets/logos/logo_read-methree.js.png" height="20">
 
 ### Functionality
 
