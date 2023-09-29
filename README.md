@@ -27,7 +27,7 @@ The Front-end was developed using the following technologies:
 
 ### Technologies
 
-- Angular CLI: 14.2.12 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png">
+- <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png"> Angular CLI: 14.2.12 
 - Node: 18.15.0
 - Package Manager: npm 9.5.0 
 - Bootstrap 5
