@@ -50,6 +50,7 @@ The Front-end was developed using the following technologies:
 - Springboot <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_springboot.png" height="20">
 - PosgreSQL <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_postgresql.png" height="20"> 
 - Cloudinary <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_cloudinary.png" height="20">
+- JWT <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_jwt.png" height="20">
 
 ### Functionality
 
