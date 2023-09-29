@@ -60,3 +60,5 @@ The Front-end was developed using the following technologies:
 - USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
 
+## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Assets
+
