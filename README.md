@@ -35,6 +35,8 @@ The Front-end was developed using the following technologies:
 
 ### Funzionalità
 
-- Funzionalità 1
-- Funzionalità 2
-- Etc.
+- Landing on the "Home" page
+- Discover 3D by accessing the "Try it" page without registration, where you can see the potential of WearUp by playing with the 4 most liked products
+- Register as a "User" or a "Brand"
+- USER: research of the product / like product / interact with product / get product specifications / get product link
+- BRAND: research of the product / upload product / interact with product / get product specifications / get product link
