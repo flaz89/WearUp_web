@@ -25,7 +25,7 @@ WEAR IT UP.
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Front-end
 The Front-end was developed using the following technologies:
 
-### Technologies
+### 💻 Technologies
 
 - Angular CLI: 14.2.12 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png" height="20">
 - Node: 18.15.0 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menode.png" height="20">
