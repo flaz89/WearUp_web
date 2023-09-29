@@ -1,2 +1,40 @@
-# WearUp_web
-It's an innovative web app dedicated to fashion industry, which introduce to the services and dynamics and show off the potential of a future mobile app that gonna be developed in  the future.
+# WearUp - Fashioning the Future
+WearUp is a project initially conceived for mobile apps (iOS/Android), but transformed into a web-app for this initial phase of its life.
+It wants revolutionize and innovate what is currently the classic experience that brands offer to the customer during the purchase phase through various e-commerce and various smartphone apps. What WearUp wants to offer is a "purchasing awareness" experience, combining fun and seriousness, exploiting the most cutting-edge technologies such as 3D experience and Augmented Reality for the virtual try-on.
+
+Questa demo offre all'utente di sfruttare il dettaglio che solo la tecnologia 3D è in grado di ofrrire.
+L'utente può "giocare" con alcuni modelli di prova senza registrarsi per testare il prodotto, oppure accedere per avere l'elenco completo dei prodotti a disposizione. L'accesso può avvenire come "user", ovvero utente semplice con account e gestione dei preferiti, oppure come "brand", dedicato a tutti i marchi di moda innovativi che decidono di sfruttare la potenzialità di questa app caricando i propri prodotti digitali mettendoli a disposizione del grande pubblico.
+
+CHOOSE BETTER.  
+BE AWARE.  
+WEAR IT UP.
+
+## Index
+
+- [Front-end](#front-end)
+  - [Tecnologie](#tecnologie)
+  - [Funzionalità](#funzionalità)
+- [Back-end](#back-end)
+  - [Tecnologie](#tecnologie-1)
+  - [APIs](#apis)
+- [Installazione](#installazione)
+- [Utilizzo](#utilizzo)
+- [Contribuire](#contribuire)
+- [Licenza](#licenza)
+
+![Logo](WearUp-FrontEnd/src/assets/images/Loghi_Brand_Wap-01.jpg) ## Front-end
+The Front-end was developed using the following technologies:
+
+### Technologies
+
+- Angular CLI: 14.2.12
+- Node: 18.15.0
+- Package Manager: npm 9.5.0 
+- Bootstrap 5
+- Three.JS
+
+### Funzionalità
+
+- Funzionalità 1
+- Funzionalità 2
+- Etc.
