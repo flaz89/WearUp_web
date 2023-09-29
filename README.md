@@ -22,7 +22,7 @@ WEAR IT UP.
 - [Contribuire](#contribuire)
 - [Licenza](#licenza)
 
-## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="30" height="30"> Front-end
+## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Front-end
 The Front-end was developed using the following technologies:
 
 ### Technologies
