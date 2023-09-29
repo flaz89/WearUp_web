@@ -12,10 +12,13 @@ WEAR IT UP.
 ## Index
 
 - [Front-end](#front-end)
-  - [Tecnologie](#tecnologie)
+  - [Technologies](#tecnologie)
   - [Funzionalità](#funzionalità)
 - [Back-end](#back-end)
-  - [Tecnologie](#tecnologie-1)
+  - [Technologies](#tecnologie-1)
+  - [APIs](#apis)
+- [Assets](#back-end)
+  - [Technologies](#tecnologie-1)
   - [APIs](#apis)
 - [Installazione](#installazione)
 - [Utilizzo](#utilizzo)
@@ -27,11 +30,11 @@ The Front-end was developed using the following technologies:
 
 ### 💻 Technologies
 
-- Angular CLI: 14.2.12 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-meangular.png" height="20">
-- Node: 18.15.0 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menode.png" height="20">
-- Package Manager: npm 9.5.0 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-menpm.png" height="20"> 
-- Bootstrap 5 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-mebootstrap.png" height="20">
-- Three.JS <img src="WearUp-FrontEnd/src/assets/logos/logo_read-methree.js.png" height="20">
+- Angular CLI: 14.2.12 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-meangular_pkkoyc.png" height="20">
+- Node: 18.15.0 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-menode_prfp3b.png" height="20">
+- Package Manager: npm 9.5.0 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028247/WearUp/images/logo_read-menpm_tyoggc.png" height="20"> 
+- Bootstrap 5 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-mebootstrap_zqac8s.png" height="20">
+- Three.JS <img src="https://res.cloudinary.com/wearup/image/upload/v1696028247/WearUp/images/logo_read-methree.js_xeb89y.png" height="20">
 
 ### Functionality
 
@@ -40,17 +43,18 @@ The Front-end was developed using the following technologies:
 - Register as a "User" or a "Brand"
 - USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
+- product ////////////////
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Back-end
 The Front-end was developed using the following technologies:
 
 ### 💻 Technologies
 
-- Java JDK: 17.0.7 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_jdk.png" height="20">
-- Springboot <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_springboot.png" height="20">
-- PosgreSQL <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_postgresql.png" height="20"> 
-- Cloudinary <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_cloudinary.png" height="20">
-- JWT <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_jwt.png" height="20">
+- Java JDK: 17.0.7 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_jdk_oljgmq.png" height="20">
+- Springboot <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_springboot_gwhcf4.png" height="20">
+- PosgreSQL <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_postgresql_e5uxqz.png" height="20"> 
+- Cloudinary <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_cloudinary_hyak0g.png" height="20">
+- JWT <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_jwt_vjmamg.png" height="20">
 
 ### Functionality
 
@@ -61,4 +65,10 @@ The Front-end was developed using the following technologies:
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Assets
+
+### 💻 Technologies
+
+- Figma <img src="https://res.cloudinary.com/wearup/image/upload/v1696029535/WearUp/images/logo_read-me_figma_kep5hz.png" height="20">
+- Illustrator <img src="https://res.cloudinary.com/wearup/image/upload/v1696029532/WearUp/images/logo_read-me_ai_fxb83h.png" height="20">
+- Clo3D <img src="https://res.cloudinary.com/wearup/image/upload/v1696029533/WearUp/images/logo_read-me_clo_na4boe.png" height="20">
 
