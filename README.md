@@ -40,3 +40,22 @@ The Front-end was developed using the following technologies:
 - Register as a "User" or a "Brand"
 - USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
+
+## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Back-end
+The Front-end was developed using the following technologies:
+
+### 💻 Technologies
+
+- Java JDK: 17.0.7 <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_jdk.png" height="20">
+- Springboot <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_springboot.png" height="20">
+- PosgreSQL <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_postgresql.png" height="20"> 
+- Cloudinary <img src="WearUp-FrontEnd/src/assets/logos/logo_read-me_cloudinary.png" height="20">
+
+### Functionality
+
+- Landing on the "Home" page
+- Discover 3D by accessing the "Try it" page without registration, where you can see the potential of WearUp by playing with the 4 most liked products
+- Register as a "User" or a "Brand"
+- USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
+- BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
+
