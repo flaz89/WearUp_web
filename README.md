@@ -76,7 +76,7 @@ The Front-end was developed using the following technologies:
 - Illustrator used for the UI creation from scratch of custom logos vector images
 - Clo3D used for the design and the develop of all virtual assets
 
-## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Installation
+## <img src="https://res.cloudinary.com/wearup/image/upload/v1696034956/WearUp/images/Screenshot_2023-09-30_alle_02.47.49_mv4p2e.png" width="40" height="30"> Installation
 
 To run the project you need use:
 - FRONT-END: run CLI command `ng serve`
