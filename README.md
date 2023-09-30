@@ -36,7 +36,7 @@ The Front-end was developed using the following technologies:
 - Bootstrap 5 <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-mebootstrap_zqac8s.png" height="20">
 - Three.JS <img src="https://res.cloudinary.com/wearup/image/upload/v1696028247/WearUp/images/logo_read-methree.js_xeb89y.png" height="20">
 
-### Functionality
+### ⚙️ Functionality
 
 - Landing on the "Home" page
 - Discover 3D by accessing the "Try it" page without registration, where you can see the potential of WearUp by playing with the 4 most liked products
@@ -57,11 +57,12 @@ The Front-end was developed using the following technologies:
 - JWT <img src="https://res.cloudinary.com/wearup/image/upload/v1696028246/WearUp/images/logo_read-me_jwt_vjmamg.png" height="20">
 - Bcrypt <img src="https://bcrypt.online/images/bcrypt-esse-tools-logo-square.svg" height="20">
 
-### Functionality
+### ⚙️ Functionality
 
 - PostgreSQL used as database application, all the database data access are stored in a private file so if you want to use it you have to link your database data on file "env.properties"
 - All digital assets managed using Cloudinary as a cloud storage
 - JWT used to generate token for each user access
+- Bcrypt used for cryprting all users password
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Assets
 
 ### 💻 Technologies
@@ -70,3 +71,17 @@ The Front-end was developed using the following technologies:
 - Illustrator <img src="https://res.cloudinary.com/wearup/image/upload/v1696029532/WearUp/images/logo_read-me_ai_fxb83h.png" height="20">
 - Clo3D <img src="https://res.cloudinary.com/wearup/image/upload/v1696029533/WearUp/images/logo_read-me_clo_na4boe.png" height="20">
 
+### ⚙️ Functionality
+
+- Figma used for all the UI Design
+- Illustrator used for the UI creation from scratch of custom logos vector images
+- Clo3D used for the design and the develop of all virtual assets
+
+## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Installation
+
+To run the project you need use:
+- FRONT-END: run CLI command `ng serve`
+- BACKEND: run application normally, but before you have to change data on "env.properties" file because are private data
+
+## 🖊️ Author
+<a href="https://www.linkedin.com/in/flavio-mammoliti-52138167/">Flavio Mammoliti</a>
