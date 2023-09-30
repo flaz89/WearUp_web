@@ -20,7 +20,8 @@ WEAR IT UP.
 - [Author](#utilizzo)
 
 
-<img src="https://res.cloudinary.com/wearup/image/upload/v1696033993/WearUp/images/Screenshot_2023-09-30_alle_02.32.32_squxc1.png" width="100%">  
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696033993/WearUp/images/Screenshot_2023-09-30_alle_02.32.32_squxc1.png" width="100%">
+
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Front-end
 The Front-end was developed using the following technologies:
 
@@ -40,6 +41,8 @@ The Front-end was developed using the following technologies:
 - USER: research of the product / like product / interact with product in a 3D environment / get product specifications / get product link
 - BRAND: research of the product / upload product / interact with product in a 3D environment / get product specifications / get product link
 - Page "products" allows user to interact with all products catalog and 3D viewer (only with registration)
+
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696034302/WearUp/images/WearUp_m7fvdy.png" width="100%">  
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Back-end
 The Front-end was developed using the following technologies:
