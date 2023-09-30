@@ -63,7 +63,7 @@ The Front-end was developed using the following technologies:
 - JWT used to generate token for each user access
 - Bcrypt used for cryprting all users password
 
-<img src="https://res.cloudinary.com/wearup/image/upload/v1696034956/WearUp/images/Screenshot_2023-09-30_alle_02.47.49_mv4p2e.png" width="40" height="30">
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696034956/WearUp/images/Screenshot_2023-09-30_alle_02.47.49_mv4p2e.png" width="100%">
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Assets
 
