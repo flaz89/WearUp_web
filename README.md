@@ -4,8 +4,7 @@
 WearUp is a project initially conceived for mobile apps (iOS/Android), but transformed into a web-app for this initial phase of its life.
 It wants revolutionize and innovate what is currently the classic experience that brands offer to the customer during the purchase phase through various e-commerce and various smartphone apps. What WearUp wants to offer is a "purchasing awareness" experience, combining fun and seriousness, exploiting the most cutting-edge technologies such as 3D experience and Augmented Reality for the virtual try-on.
 
-Questa demo offre all'utente di sfruttare il dettaglio che solo la tecnologia 3D è in grado di ofrrire.
-L'utente può "giocare" con alcuni modelli di prova senza registrarsi per testare il prodotto, oppure accedere per avere l'elenco completo dei prodotti a disposizione. L'accesso può avvenire come "user", ovvero utente semplice con account e gestione dei preferiti, oppure come "brand", dedicato a tutti i marchi di moda innovativi che decidono di sfruttare la potenzialità di questa app caricando i propri prodotti digitali mettendoli a disposizione del grande pubblico.
+This demo allows the user to leverage the detail that only 3D technology can offer. The user can "play" with some sample models without registering to test the product, or they can log in to access the complete list of products available. Access can be as a `user`, a regular account with favorite management, or as a `brand`, dedicated to all innovative fashion brands that choose to harness the potential of this app by uploading their digital products for the general public.
 
 CHOOSE BETTER.  
 BE AWARE.  
