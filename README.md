@@ -1,3 +1,5 @@
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696033423/WearUp/images/banner_read-me_Artboard_19_aprc7w.png" width="24em">
+
 # WearUp - Fashioning the Future
 WearUp is a project initially conceived for mobile apps (iOS/Android), but transformed into a web-app for this initial phase of its life.
 It wants revolutionize and innovate what is currently the classic experience that brands offer to the customer during the purchase phase through various e-commerce and various smartphone apps. What WearUp wants to offer is a "purchasing awareness" experience, combining fun and seriousness, exploiting the most cutting-edge technologies such as 3D experience and Augmented Reality for the virtual try-on.
@@ -12,18 +14,11 @@ WEAR IT UP.
 ## Index
 
 - [Front-end](#front-end)
-  - [Technologies](#tecnologie)
-  - [Funzionalità](#funzionalità)
 - [Back-end](#back-end)
-  - [Technologies](#tecnologie-1)
-  - [APIs](#apis)
 - [Assets](#back-end)
-  - [Technologies](#tecnologie-1)
-  - [APIs](#apis)
-- [Installazione](#installazione)
-- [Utilizzo](#utilizzo)
-- [Contribuire](#contribuire)
-- [Licenza](#licenza)
+- [Installation](#installazione)
+- [Author](#utilizzo)
+
 
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Front-end
 The Front-end was developed using the following technologies:
