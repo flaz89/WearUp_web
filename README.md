@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/wearup/image/upload/v1696033423/WearUp/images/banner_read-me_Artboard_19_aprc7w.png" width="24em">
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696033423/WearUp/images/banner_read-me_Artboard_19_aprc7w.png">
 
 # WearUp - Fashioning the Future
 WearUp is a project initially conceived for mobile apps (iOS/Android), but transformed into a web-app for this initial phase of its life.
