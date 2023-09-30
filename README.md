@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/wearup/image/upload/v1696033758/WearUp/images/banner_read-me_Artboard_19_ovzv7w.png" width="100%">
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696033758/WearUp/images/banner_read-me_Artboard_19_ovzv7w.png" width="100%">  
 
 # WearUp - Fashioning the Future
 WearUp is a project initially conceived for mobile apps (iOS/Android), but transformed into a web-app for this initial phase of its life.
@@ -20,7 +20,7 @@ WEAR IT UP.
 - [Author](#utilizzo)
 
 
-<img src="https://res.cloudinary.com/wearup/image/upload/v1696033993/WearUp/images/Screenshot_2023-09-30_alle_02.32.32_squxc1.png" width="100%">
+<img src="https://res.cloudinary.com/wearup/image/upload/v1696033993/WearUp/images/Screenshot_2023-09-30_alle_02.32.32_squxc1.png" width="100%">  
 ## <img src="WearUp-FrontEnd/src/assets/logos/Loghi_Brand_Wap_Read-me-03.png" width="40" height="30"> Front-end
 The Front-end was developed using the following technologies:
 
