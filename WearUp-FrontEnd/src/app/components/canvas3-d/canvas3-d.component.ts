@@ -109,7 +109,7 @@ export class Canvas3DComponent implements AfterViewInit {
       const elapsedTime = clock.getElapsedTime();
 
       if(this.mesh){
-        this.mesh.rotation.y = elapsedTime * 0.06
+        this.mesh.rotation.y = elapsedTime * 0.3
       }
 
       controls.update();

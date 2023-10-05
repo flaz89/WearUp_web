@@ -17,7 +17,7 @@ export class BrandComponent implements OnInit {
 
   imageSrc: string = '';
   isImageLoaded:boolean = false;
-  @ViewChild('fileInput') fileInput!: ElementRef;
+  @ViewChild('fileInput1') fileInput1!: ElementRef;
 
   @Output() registrationSuccess = new EventEmitter<void>();
 
@@ -28,7 +28,7 @@ export class BrandComponent implements OnInit {
   selectedBrandLogo: File | null = null;
 
   isLoading:boolean = false;
-  serverMessageOk!:string;
+  serverMessageOk!:string
   serverMessageError!:string;
 
   countries: any[] = [];
@@ -101,7 +101,8 @@ export class BrandComponent implements OnInit {
   }
 
   cancelImage() {
-    this.fileInput.nativeElement.value = '';
+    console.log(this.fileInput1  );
+    this.fileInput1.nativeElement.value = '';
     this.imageForm.get("profilePicture")?.reset;
     this.isImageLoaded = false;
     this.imageForm.reset();

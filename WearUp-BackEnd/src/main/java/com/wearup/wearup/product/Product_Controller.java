@@ -58,7 +58,7 @@ public class Product_Controller {
 	@GetMapping("/all")
 	public Page<ProductResponseList> getProducts(
 			@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, 
+			@RequestParam(defaultValue = "30") int size, 
 			@RequestParam(defaultValue = "creationDate,desc") String sortBy) {
 		return prodSrv.find(page, size, sortBy);
 	}
